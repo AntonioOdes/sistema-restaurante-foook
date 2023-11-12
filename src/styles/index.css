@@ -1,0 +1,75 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+header{
+  padding-top: 0;
+}
+.narbar-my{
+  padding-top: 70px;
+  background-color: rgba(78, 76, 67, 0.7);
+  font-size:  26px;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 10px 10px;
+}
+
+nav ul{
+
+  margin-left: 70px;
+  margin-top: -60px;
+  position: relative;
+  top: 10px;
+ 
+}
+
+nav li{
+  padding-left: 25px;
+  font-weight: bold;
+
+}
+
+nav li a{
+  border-radius: 20px;
+  
+}
+
+nav li a:hover{
+  background-color: rgba(184, 180, 165, 0.164);
+}
+
+nav .ilogo{
+  background-color: rgba(184, 180, 165, 0.5);
+  margin-left: 290px;
+  margin-right: 310px;
+  border-radius: 20px;
+  position: relative;
+  bottom: 10px;
+}
+
+nav #ibolsa{
+  position: relative;
+  bottom: 6px;
+}
+
+
+
+.portada img{
+  width: 1000px;
+}
+
+/*sección portada */
+.section-portada img{
+  width: 1821px;
+}
+.section-portada div {
+  margin-top: -400px;
+}
+/*sección menu */
+.section-menu{
+  background-color: rgba(78, 76, 67, 0.5);
+  margin: 0 20px 0 20px;
+  border-radius: 15px;
+  padding: 10px 20px 0 20px;
+}
+
+.section-menu h1{
+  text-align: center ;
+  padding: 50px;
+}

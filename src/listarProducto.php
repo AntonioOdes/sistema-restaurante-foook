@@ -1,19 +1,20 @@
 <?php
 include('../config/config.php');
 include('../config/connection.php');
+include('./templates/cabecera.php')
 ?>
+    <section class="section-portada">
+        <div>
+            <img src="./images/prsfoodok.gif" alt="">
+        </div>
+        
+    </section>
+    <section class="section-menu">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Foodok</title>
-    <link rel="icon" href="./images/logo.png" type="image/png">
-</head>
-<body>
-
+        <h1>CARTA ONLINE</h1>
+       
+    </section>
+    
+    </header>
 </body>
-
 </html>
