@@ -1,6 +1,8 @@
 <?php
-include('../config/config.php');
-include('../config/connection.php');
+include('../../config/config.php');
+include('../../config/connection.php');
+include('../templates/cabecera.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +17,7 @@ include('../config/connection.php');
     <p id="result-message"></p>
     <!-- Replace the "test" client-id value with your client-id -->
     <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-    <script src="pagar.js"></script>
+    <script src="../pagar.js"></script>
   </body>
 </html>
+<?php include('./templates/pie.php')?>

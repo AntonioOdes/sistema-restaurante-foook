@@ -3,10 +3,10 @@
 define("KEY", "adminfoodok1");
 define("COD", "AES-128-ECB");
 // Datos de conexión a la base de datos
-define("server","localhost");
-define("user","root");
-define("db","foodok");
-define("password","");
+define("server","cs.ilab.cl");
+define("user","2_BD_69");
+define("db","2_BD_69");
+define("password","nicolas.matamalal23");
 
 
 

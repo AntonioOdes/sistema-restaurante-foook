@@ -1,10 +1,15 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+/* DISEÑO GENERAL*/
 header{
-  padding-top: 0;
+  padding-top: 100px;
 }
+
+
+/* PÁGINA: listarProducto*/
 .narbar-my{
   padding-top: 70px;
-  background-color: rgba(78, 76, 67, 0.7);
+  background-color: rgba(202, 198, 177, 0.7);
   font-size:  26px;
   box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 10px 10px;
@@ -31,7 +36,7 @@ nav li a{
 }
 
 nav li a:hover{
-  background-color: rgba(184, 180, 165, 0.164);
+  background-color: rgba(173, 151, 71, 0.164);
 }
 
 nav .ilogo{
@@ -56,7 +61,7 @@ nav #ibolsa{
 
 /*sección portada */
 .section-portada img{
-  width: 1821px;
+  width: 1799px;
 }
 .section-portada div {
   margin-top: -400px;
@@ -73,3 +78,5 @@ nav #ibolsa{
   text-align: center ;
   padding: 50px;
 }
+
+/* PÁGINA: listarCarrito.php*/

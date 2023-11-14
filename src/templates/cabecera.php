@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodok</title>
-    <link rel="stylesheet" href="./styles/index.css"> 
+    <link rel="stylesheet" href="../styles/style.css"> 
 </head>
 <body>
     <header>
@@ -26,11 +26,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">ubicación<span class="sr-only"></span></a>
                     </li>
-                    <li ><img class="ilogo" src="./images/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-text-top logo-my"></li>
+                    <li ><img class="ilogo" src="../images/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-text-top logo-my"></li>
                     
                     <li class="nav-item active">
-                        <a class="nav-link" href="MostrarCarritoPage.php" tabindex="-1" aria-disabled="true">
-                            <img id="ibolsa"  src="./images/bolsa.png"  width="40" height="40" alt=""> (
+                        <a class="nav-link" href="listarCarrito.php" tabindex="-1" aria-disabled="true">
+                            <img id="ibolsa"  src="../images/bolsa.png"  width="40" height="40" alt=""> (
                             <?php 
                             echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']);
                             ?> )
