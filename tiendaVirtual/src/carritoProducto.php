@@ -93,13 +93,15 @@ if(isset($_POST['btnAccion'])){
         $imagen = $_POST['urlImagenProducto'];
         $categoria = $_POST['categoriaProducto'];
 
-
         $sentencia = $pdo->prepare("INSERT INTO `producto` (`id`, `id_categoria`, `nombre`, `precio`, `descripcion`, `imagen`) 
          VALUES (NULL, '1', '$nombre', '$precio', '$descripcion', '$categoria')");
         $sentencia->execute();
         print_r($sentencia);
-          
+ 
+        
     }
+    
+
 }
 
 

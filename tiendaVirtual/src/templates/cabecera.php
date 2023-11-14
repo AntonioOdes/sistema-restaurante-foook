@@ -17,7 +17,7 @@
             <div id="my-nav" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto justify-content-center"> <!-- Añade la clase justify-content-center aquí -->
                     <li class="nav-item active">
-                        <a class="nav-link" href="./listarProducto.php">nuestra carta<span class="sr-only"></span></a>
+                        <a class="nav-link" href="../client/listarProducto.php">nuestra carta<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item active nav-items-2">
                         <a class= "nav-link" href="#">calificanos<span class="sr-only"></span></a>

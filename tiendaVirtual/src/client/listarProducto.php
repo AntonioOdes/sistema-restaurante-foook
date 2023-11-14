@@ -8,6 +8,7 @@ include('../templates/cabecera.php');
         <div>
             <img src="../images/prsfoodok.gif" alt="">
         </div>
+       <button>s</button>
         
     </section>
     <section class="section-menu">
@@ -75,3 +76,4 @@ include('../templates/cabecera.php');
     </script>
 </body>
 </html>
+<?php include('../templates/pie.php')?>
