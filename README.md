@@ -1,2 +1,2 @@
-#tiendaVirtual-foook
- Proyecto de sistema de restaurante food ok 
+# sistema-restaura-foook
+ Proyecto de sistema de restaurante food ok
