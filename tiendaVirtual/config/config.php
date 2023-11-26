@@ -15,10 +15,10 @@ localhost
 root
 foodok
  */
-define("server","cs.ilab.cl");
-define("user","2_BD_69");
-define("db","2_BD_69");
-define("password","nicolas.matamalal23");
+define("server","localhost");
+define("user","root");
+define("db","foodok");
+define("password","");
 
 
 

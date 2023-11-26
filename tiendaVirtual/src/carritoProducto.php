@@ -1,17 +1,19 @@
 <?php 
-include('../config/config.php');
-include('../config/connection.php');
+
 session_start();
 $mensaje = "";
+$mensajesql = "";
 
 if(isset($_POST['btnAccion'])){
+    
     switch($_POST['btnAccion']){
         case 'AgregarCarrito':
+            
             if(is_numeric(openssl_decrypt($_POST['id'],COD,KEY))){
                 $id = openssl_decrypt($_POST['id'],COD,KEY);
                $mensaje.= "Ok id correcto =".$id. "</br>";
             }else{
-                $mensaje.= "Ok id correcto =".$id. "</br>"; break;  
+                $mensaje.= "Error id correcto =".$id. "</br>"; break;  
             }
             if(is_string(openssl_decrypt($_POST['nombre'],COD,KEY))){
                 $nombre = openssl_decrypt($_POST['nombre'],COD,KEY);
@@ -53,6 +55,7 @@ if(isset($_POST['btnAccion'])){
             );
             $_SESSION['carrito'][0]=$producto;
         }else{
+            
             $numeroProductos=count($_SESSION['carrito']);
             $producto = array(
                 'id' => $id,
@@ -60,14 +63,15 @@ if(isset($_POST['btnAccion'])){
                 'precio' => $precio,
                 'cantidad' => $cantidad
             );
-            $_SESSION['carrito'][$numeroProductos]=$producto;
             
+            $_SESSION['carrito'][$numeroProductos]=$producto;
+           
         }
-        $mensaje= print_r($_SESSION,true);
-    header('Location: listarProducto.php'); 
-    exit;
+        //$mensaje= print_r($_SESSION,true);
+        
     break;
     case 'Eliminar':
+       
         if(is_numeric(openssl_decrypt($_POST['id'],COD,KEY))){
 
             $id = openssl_decrypt($_POST['id'],COD,KEY);
@@ -77,6 +81,7 @@ if(isset($_POST['btnAccion'])){
             if($producto['id'] ==  $id){
                 unset($_SESSION['carrito'][$indice]);
                 echo "<script>alert('Elemento borrado')</script>";
+                
                 break;
             }
            }
@@ -87,6 +92,7 @@ if(isset($_POST['btnAccion'])){
     exit;
     break;
     case 'AgregarProducto':
+        echo "<script>alert('agregandoProducto... ')</script>";
         $nombre= $_POST['nombreProducto'];
         $descripcion = $_POST['descripcionProducto'];
         $precio = $_POST['precioProducto'];
@@ -95,12 +101,14 @@ if(isset($_POST['btnAccion'])){
 
         $sentencia = $pdo->prepare("INSERT INTO `producto` (`id`, `id_categoria`, `nombre`, `precio`, `descripcion`, `imagen`) 
          VALUES (NULL, '1', '$nombre', '$precio', '$descripcion', '$categoria')");
+        
+
         $sentencia->execute();
-        print_r($sentencia);
+
  
         
     }
-    
+
 
 }
 

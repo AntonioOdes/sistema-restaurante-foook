@@ -10,7 +10,7 @@ header{
 .narbar-my{
   padding-top: 70px;
   background-color: rgba(202, 198, 177, 0.7);
-  font-size:  26px;
+  font-size:  20px;
   box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 10px 10px;
 }
@@ -55,13 +55,11 @@ nav #ibolsa{
 
 
 
-.portada img{
-  width: 1000px;
-}
+
 
 /*sección portada */
 .section-portada img{
-  width: 1799px;
+  width: 1349px;
 }
 .section-portada div {
   margin-top: -400px;

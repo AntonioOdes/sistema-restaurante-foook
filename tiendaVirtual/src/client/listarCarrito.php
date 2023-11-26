@@ -31,6 +31,7 @@ include('../templates/cabecera.php');
         <?php $total= 0?>
         <?php foreach($_SESSION['carrito'] as $indice=>$producto)  { ?>
         <tr >
+           
             <td width="15%"><?php echo $producto['nombre']?></td>
             <td width="15%"><?php echo $producto['id']?></td>
             <td width="15%"><?php echo $producto['cantidad']?></td>
@@ -74,7 +75,7 @@ include('../templates/cabecera.php');
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Los productos de enviarán a este correo</small>
                     </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" value="prodecer" name="btnAccion">Proceder a pagar >></button>
+                    <button class="btn btn-primary btn-lg btn-block" id  type="submit" value="prodecer" name="btnAccion">Proceder a pagar >></button>
                 </form>
                
             </td>
@@ -88,5 +89,5 @@ include('../templates/cabecera.php');
 </section>
 
 <?php
-include('./templates/pie.php');
+include('../templates/pie.php');
 ?>

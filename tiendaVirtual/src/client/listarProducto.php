@@ -14,6 +14,14 @@ include('../templates/cabecera.php');
     <section class="section-menu">
 
         <h1>CARTA ONLINE</h1>
+        <div class="alert alert-success">
+          <h3>Validación de item</h3>
+        <?php echo $mensaje?>
+        <br>
+        <h3>cantidad de productos</h3>
+        <?php echo $mensaje?>
+        </div>
+
         <div class="row">
           <?php 
           $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre
