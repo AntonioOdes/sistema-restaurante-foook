@@ -14,11 +14,16 @@ nicolas.matamalal23 */
 localhost
 root
 foodok
- */
+ 
 define("server","localhost");
 define("user","root");
 define("db","foodok");
 define("password","");
+*/
+$servername = "localhost";
+$username = "root";
+$dbname = "foodok";
+$password = "";
 
 
 
