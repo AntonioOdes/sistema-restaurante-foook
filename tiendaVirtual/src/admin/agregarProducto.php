@@ -13,7 +13,8 @@ include('./../templates/cabecera.php');
     <title>Admin</title>
 </head>
 <body>
-    <section class="section-gestionarProductos">
+    <section class="section-menu">
+        <section class="contenido">
         <h2>Agregar producto</h2>
         <?php 
         $sentencia = $pdo->prepare("SELECT * FROM categoria");
@@ -24,37 +25,31 @@ include('./../templates/cabecera.php');
         
        
     <form action="../carritoProducto.php" method="post">
+        <label for="nombreProducto">producto</label>
         <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nombre</span>
-        <input type="text" class="form-control" placeholder="Username"  name="nombreProducto" id="nombreProducto" aria-label="nombreProducto" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="nombre"  name="nombreProducto" id="nombreProducto" aria-label="nombreProducto" aria-describedby="basic-addon1">
         </div>
 
+        <label for="categoriaProducto">categoria</label>
         <select class="form-select" id="categoriaProducto" name="categoriaProducto" aria-label="Default select example">
-         <option selected>Open this select menu</option>
-         <?php foreach($listaCategoria as $categoria){ ?>
-             <option value= ><?php echo $categoria['id'];?></option>      
-        <?php } ?> 
-
-        
-        
+            <option selected>categoria</option>
+            <?php
+            $conta = 0; // Agregamos la inicialización de $conta
+            foreach ($listaCategoria as $categoria) {
+                $conta += 1; // Añadimos el punto y coma
+            ?>
+                <option value="<?php echo $conta; ?>"><?php echo $categoria['nombre']; ?></option>
+            <?php } ?>
         </select>
-
-        <div class="mb-3">
-        <label for="basic-url" class="form-label">Agrega una URL a una imagen</label>
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon3">URL</span>
-            <input type="text" name="urlImagenProducto" class="form-control" id="urlImagenProducto" aria-describedby="basic-addon3 basic-addon4">
-        </div>
-        <div class="form-text" id="basic-addon4">Example help text goes outside the input group.</div>
-        </div>
-     
+        <br>
         
-        <div class="input-group mb-3">
-        <span class="input-group-text">Precio $</span>
+        <label for="precioProducto">precio (CL)</label>
+       
         <input type="text"  name="precioProducto" id="precioProducto"class="form-control" aria-label="Amount (to the nearest dollar)">
-        <span class="input-group-text">.00</span>
-        </div>
+       
+        <br>
 
+        <label for="descripcionProducto">descripción</label>
         <div class="input-group">
         <span class="input-group-text">Descripción</span>
         <textarea class="form-control" name="descripcionProducto" id="descripcionProducto" aria-label="With textarea"></textarea>
@@ -70,6 +65,8 @@ include('./../templates/cabecera.php');
     </form>
     
     </section>
+    </section>
+    
     
 </body>
 </html>

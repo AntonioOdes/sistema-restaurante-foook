@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+
 $mensaje = "";
 $mensajesql = "";
 
@@ -8,7 +9,10 @@ if(isset($_POST['btnAccion'])){
     
     switch($_POST['btnAccion']){
         case 'AgregarCarrito':
-            
+            function generarIDProducto() {
+                return rand(1, 9999999);
+              }
+              
             if(is_numeric(openssl_decrypt($_POST['id'],COD,KEY))){
                 $id = openssl_decrypt($_POST['id'],COD,KEY);
                $mensaje.= "Ok id correcto =".$id. "</br>";
@@ -92,18 +96,39 @@ if(isset($_POST['btnAccion'])){
     exit;
     break;
     case 'AgregarProducto':
-        echo "<script>alert('agregandoProducto... ')</script>";
+        $valorSeleccionado = $_POST['categoriaProducto'];
+
+        // Preparamos el mensaje JavaScript
+        $script = "<script>alert('El valor seleccionado es: " . $valorSeleccionado . "');</script>";
+
+        // Imprimimos el script
+        echo $script;
         $nombre= $_POST['nombreProducto'];
         $descripcion = $_POST['descripcionProducto'];
         $precio = $_POST['precioProducto'];
-        $imagen = $_POST['urlImagenProducto'];
         $categoria = $_POST['categoriaProducto'];
 
-        $sentencia = $pdo->prepare("INSERT INTO `producto` (`id`, `id_categoria`, `nombre`, `precio`, `descripcion`, `imagen`) 
-         VALUES (NULL, '1', '$nombre', '$precio', '$descripcion', '$categoria')");
         
+        $sentencia = $pdo->prepare("INSERT INTO `producto` (`id`, `id_categoria`, `nombre`, `precio`, `descripcion`, `imagen`) 
+         VALUES (NULL, '$categoria', '$nombre', '$precio', '$descripcion', '$categoria')");
 
         $sentencia->execute();
+    header('Location: home.php');
+    exit;
+    break;
+    case 'validarUsuario':
+        include('../config/config.php');
+        include('../config/connection.php');
+        $nombreCajero = $_POST['nombreCajero'];
+        $password = $_POST['password'];
+
+        $sentencia = $pdo->prepare("SELECT * FROM cajero");
+        $sentencia->execute();
+
+        if($nombreCajero = )
+
+
+       
 
  
         

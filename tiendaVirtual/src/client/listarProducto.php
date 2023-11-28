@@ -4,74 +4,66 @@ include('../../config/connection.php');
 include('../carritoProducto.php');
 include('../templates/cabecera.php');
 ?>
+  <h1 >Restaurant Food Ok</h1>
     <section class="section-portada">
-        <div>
-            <img src="../images/prsfoodok.gif" alt="">
+    <div class="contenido">
+        <div class="portada">
+            <img src="../images/scene00150.jpg" alt="">
         </div>
-       <button>s</button>
-        
+        <a href="#carta">ver carta</a>
+      </div>
     </section>
     <section class="section-menu">
-
-        <h1>CARTA ONLINE</h1>
-        <div class="alert alert-success">
-          <h3>Validación de item</h3>
-        <?php echo $mensaje?>
-        <br>
-        <h3>cantidad de productos</h3>
-        <?php echo $mensaje?>
-        </div>
-
-        <div class="row">
-          <?php 
-          $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre
-          FROM producto, categoria where producto.id_categoria = categoria.id");
+      
+      <div class="contenido">
+      
+        <h1 id="carta">CARTA ONLINE</h1>
+        <h4>sándwiches</h4>
+        <?php 
+          $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
+           as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 1 ");
           $sentencia->execute();
           $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
            //print_r($listaProductos);
+           include('../templates/mostrarProductos.php')
            ?>
-            <?php foreach($listaProductos as $producto){ ?>
-          <div class="col-3">
-          <div class="card">
-                <img 
-                title="<?php echo $producto['nombre'];?>"
-                class="card-img-top"
-                alt="<?php echo $producto['nombre'];?>"
-                src="<?php echo $producto['imagen'];?>"
-                data-toggle="popover"
-                data-trigger="hover"
-                data-content="And here's some amazing content. It's very engaging. Right?"
-                height="180"
-            >
+   
+        <h4>pichangas</h4>
+        <?php 
+          $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
+           as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 2 ");
+          $sentencia->execute();
+          $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+           //print_r($listaProductos);
+           include('../templates/mostrarProductos.php')
+           ?>
+        
+        <h4>papafritas</h4>
+        <?php 
+          $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
+           as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 3 ");
+          $sentencia->execute();
+          $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+           //print_r($listaProductos);
+           include('../templates/mostrarProductos.php')
+           ?>
+        <h4>bebestibles</h4>
+        
+        <div class="row">
+          <?php 
+          $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
+           as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 4 ");
+          $sentencia->execute();
+          $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+           //print_r($listaProductos);
+           include('../templates/mostrarProductos.php')
+           ?>
+            
+          
 
-            <div class="card-body">
-              <span><h6><?php echo $producto['categoria_nombre']?></h6></span>
-              <span><?php echo $producto['nombre'];?></span>
-              <h5 class="card-title">$<?php echo $producto['precio'];?></h5>
-              <p class="card-text"><?php echo $producto['descripcion'];?></p>
 
-              <form action="" method="post">
-                <input  hidden type="text" name="id" id="id" value="<?php echo  openssl_encrypt($producto['id'],COD,KEY);  ?>">
-                <input  hidden type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'],COD,KEY);?>">
-                <input  hidden type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'],COD,KEY);?>">
-                <input  hidden type="text" name="descripcion" id="descripcion" value="<?php echo openssl_encrypt($producto['descripcion'],COD,KEY);?>">
-                <input  hidden type="text" name="categoria_nombre" id="categoria_nombre" value="<?php echo openssl_encrypt($producto['categoria_nombre'],COD,KEY);?>">
-                <input  hidden type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>">
-                
 
-                <button 
-                  class="btn btn-primary" 
-                  name="btnAccion"
-                  value="AgregarCarrito"
-                  type="submit" >
-                  agregar al carrito
-                </button>
-
-              </form>    
-            </div>
-          </div>
-        </div>
-        <?php } ?>      
+           
       </div>
 
     </section>
@@ -82,6 +74,8 @@ include('../templates/cabecera.php');
         $('[data-toggle="popover"]').popover()
       })
     </script>
+      </div>
+        
 </body>
 </html>
 <?php include('../templates/pie.php')?>
