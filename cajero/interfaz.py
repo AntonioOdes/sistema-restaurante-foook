@@ -13,6 +13,7 @@ from CTkListbox import *
 from customtkinter import  CTkButton, CTkEntry, CTkImage, CTkLabel
 import customtkinter as ctk
 from PIL import ImageTk, Image
+from datetime import datetime
 
 
 
@@ -42,7 +43,7 @@ class Interfaz (object):
         sheet = workbook.active  
         self.items2 = []
         workbook.close()
-
+        
         # Comprobar si el archivo existe
         if not os.path.exists(archivo_xlsx):
             # Si no existe, crear un nuevo archivo Excel
@@ -55,7 +56,8 @@ class Interfaz (object):
         self.elemntos_libro()
         self.book.save('CONTEO.xlsx')
         
-        
+        self.fecha_hoy = datetime.now()
+        self.product_list=[]
         self.btns = {}
         self.datos1 = []
         self.SeleccionCompletos()
@@ -83,6 +85,8 @@ class Interfaz (object):
         self.btnColaciones = CTkButton(self.ventana,text='eliminar pedido',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.eliminar_pedido()).place(x=1110, y=500)
     #listo
     def operaciones(self):
+        a=1
+        w=1
         self.img3 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\fi3.png").resize((25,25)))
         self.img4 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\faa.png").resize((25,25)))
         self.img5 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\nota.png").resize((25,25)))
@@ -125,15 +129,19 @@ class Interfaz (object):
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=250, y=194)
         
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12).place(x=410, y=20)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.Eliminar_todo()).place(x=410, y=20)
+        # self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13, command=lambda:self.Generar_boleta()).place(x=510, y=20)
         self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=510, y=20)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13, command=lambda:self.ingreso(a)).place(x=510, y=20)
         self.btnoper12 = CTkButton(self.ventana, text='Subir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=610, y=20)
         self.btnoper12 = CTkButton(self.ventana, text='Subir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=710, y=20)
-        self.lista1 = CTkListbox(self.ventana, height=400,width=335)
+        self.lista1 = CTkListbox(self.ventana, height=400,width=335, fg_color="black")
         self.lista1.place(x=10,y=260)
+        self.lista1.insert(0, "")
+        
     #listo
     def eliminar_pedido(self):
         id=CTkInputDialog(title='Eliminar producto', text='eliminar')
@@ -159,81 +167,42 @@ class Interfaz (object):
 
 
 
+    def ingreso(self,a):
+        # for product in self.product_list:
+        #     print(self.product_list)
 
+
+
+        # pass
+        for product in self.product_list:
+            self.datos.ingresar_producto(*product)
+            print(*product)
+
+
+        pass
 
     #listo
     def insertar_elemento_en_excel(self, palabra, precio):
+        self.lista1.insert(self.contador, palabra)
+        date = self.fecha_hoy.date()
+        fecha_como_cadena = self.fecha_hoy.strftime("%Y-%m-%d")
+        hora = self.fecha_hoy.time()
+        hora_como_cadena = self.fecha_hoy.strftime("%H:%M:%S")
+
+        print(fecha_como_cadena)
+        print(hora_como_cadena)
+
         self.contador += 1
-        texto = self.contador
+
+        contador_str = str("'" + str(self.contador) + "'")
         
-        
-        self.lista1.insert(texto, palabra)
-        # print("lo hace qui?")
-        for row in self.sheet.iter_rows():
-            for cell in row:
-                if cell.value == "MECHADA" and palabra == "MECHADA":
-                    self.cont1 += 1 
-                    self.sheet[f'A{2}'] = "MECHADA"
-                    self.sheet[f'B{2}'] = self.cont1
+        try:
+            self.datos.ingresar_producto(contador_str,precio,palabra,fecha_como_cadena,hora_como_cadena)
+            print("ok")
+        except ValueError:
+            print("eeror en ingreso de producto a mysql")
+        pass
 
-                   
-
-                    contador_str = str("'" + str(self.contador) + "'")
-                    categoria_str = 1
-
-                    dato1 = self.datos.ingresar_producto(contador_str,categoria_str,palabra,precio,palabra,palabra)
-                    
-
-                if cell.value == "AVE" and palabra == "AVE":
-                    self.cont2 += 1 
-                    self.sheet[f'A{3}'] = "AVE"
-                    self.sheet[f'B{3}'] = self.cont2
-
-                    print(palabra,precio)
-
-                    contador_str = str("'" + str(self.contador) + "'")
-                    categoria_str = 1
-
-                    dato1 = self.datos.ingresar_producto(contador_str,categoria_str,palabra,precio,palabra,palabra)
-
-                if cell.value == "LOMO" and palabra == "LOMO":
-                    self.cont3 += 1 
-                    self.sheet[f'A{4}'] = "LOMO"
-                    self.sheet[f'B{4}'] = self.cont3
-                    print(palabra,precio)
-
-                if cell.value == "CHURRASCO" and palabra == "CHURRASCO":
-                    self.cont4 += 1 
-                    self.sheet[f'A{5}'] = "CHURRASCO"
-                    self.sheet[f'B{5}'] = self.cont4
-                    print(palabra,precio)
-                if cell.value == "MECHADA OK" and palabra == "MECHADA OK":
-                    self.cont5 += 1 
-                    self.sheet[f'A{6}'] = "MECHADA OK"
-                    self.sheet[f'B{6}'] = self.cont5
-                    print(palabra,precio)
-                if cell.value == "MECHADA TRADICION" and palabra == "MECHADA TRADICION":
-                    self.cont6 += 1 
-                    self.sheet[f'A{7}'] = "MECHADA TRADICION"
-                    self.sheet[f'B{7}'] = self.cont6
-                
-                if cell.value == "AVE OK" and palabra == "AVE OK":
-                    self.cont7 += 1 
-                    self.sheet[f'A{8}'] = "AVE OK"
-                    self.sheet[f'B{8}'] = self.cont7
-                
-                if cell.value == "Completo Italiano" and palabra == "Completo Italiano":
-                    self.cont8 += 1 
-                    self.sheet[f'A{9}'] = "Completo Italiano"
-                    self.sheet[f'B{9}'] = self.cont8
-                
-        self.book.save('CONTEO.xlsx')
-        
-
-        
-
-
-        print(texto)
     #listo
     def elemntos_libro(self):
         workbook = load_workbook('CONTEO.xlsx')
@@ -270,9 +239,6 @@ class Interfaz (object):
             y = 20 + (i - 2) * 40  # Ajusta la posición y para cada botón
             print(y)
             self.crear_boton_en_pantalla(elemento, precio, x, y) 
-
-
-
  # ver
     def cargar_datos_desde_excel(self, archivo):
         try:
@@ -288,6 +254,8 @@ class Interfaz (object):
             print(f"Error al cargar datos desde Excel: {e}")
             return []
 
+
+
     def Crear_Boleta(self, producto, precio):
         boleta = f"Producto: {producto}\nPrecio: {precio}"
         return boleta
@@ -298,20 +266,30 @@ class Interfaz (object):
             boleta = self.Crear_Boleta(producto, precio)
             print(boleta)
 
-    def main(self, palabra, precio):
-        # archivo_excel = 'precios.xlsx'
-        print("entra_")
-        print(palabra,precio)
-        # self.generar_boletas_desde_excel(archivo_excel)
-        workbook2 = load_workbook('BOLETA.xlsx')
-        self.sheet = workbook2.active  
-        self.contador2 += 1 
-        self.cont += 1
-        self.sheet[f'F{self.contador + 4}'] = self.cont
-        self.sheet[f'H{self.contador + 4}'] = palabra
-        self.sheet[f'I{self.contador + 4}'] = precio
-        self.book.save('BOLETA.xlsx')
-        self.book.close()
+    def Generar_boleta(self):
+        # Supongamos que self.lista1 es un objeto CTkListbox
+        num_elementos = self.lista1.size()
+        i=-1
+        if num_elementos:
+            
+            for i in range(num_elementos):
+                print(i)
+                elemento = self.lista1.get(i)
+                print(elemento)
+
+        else:
+            print("No hay elementos seleccionados.")
+
+
+
+    def Eliminar_todo(self):
+        
+        print()
+         
+
+        self.lista1.delete(0, "end")
+        self.lista1.insert(0, "")
+        
         pass
 
     #listo 

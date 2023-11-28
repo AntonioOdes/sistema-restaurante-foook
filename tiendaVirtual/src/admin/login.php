@@ -46,6 +46,6 @@ include('./../templates/cabecera.php');
     
     </section>
     </section>
-    
-</body>
+    <?php include('../templates/pie.php')?>
+
 </html>

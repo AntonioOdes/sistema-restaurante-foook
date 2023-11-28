@@ -15,8 +15,9 @@ include('../templates/cabecera.php');
 </head>
 <body>
 <br>
-<section class="section-listarcarrito">
-<h4>Lista del carrito</h4>
+<section class="section-menu">
+    <section class="contenido">
+    <h4>Lista del carrito</h4>
 <?php if(!empty($_SESSION['carrito'])){ ?>
 <table class="table table-light">
     <tbody>
@@ -86,6 +87,8 @@ include('../templates/cabecera.php');
 <?php }else {?>
 <div class="alert alert-success">No hay productos en el carrito.</div>
 <?php }?>
+    </section>
+
 </section>
 
 <?php

@@ -32,8 +32,8 @@ if (isset($_POST['btnAccion'])) {
                 $id = openssl_decrypt($_POST['id'], COD, KEY);
 
                 // Tu conexión a la base de datos debería estar establecida antes de este punto
-                include('../../config/config.php');
-                include('../../config/connection.php');
+                include('../config/config.php');
+                include('../config/connection.php');
 
                 // Utiliza prepared statements para prevenir SQL injection
                 $sentencia = $pdo->prepare("DELETE FROM producto WHERE id = :id");
@@ -54,27 +54,73 @@ if (isset($_POST['btnAccion'])) {
             }
             break;
         
-    case 'AgregarProducto':
-        $valorSeleccionado = $_POST['categoriaProducto'];
-
-        // Preparamos el mensaje JavaScript
-        $script = "<script>alert('El valor seleccionado es: " . $valorSeleccionado . "');</script>";
-
-        // Imprimimos el script
-        echo $script;
-        $nombre= $_POST['nombreProducto'];
-        $descripcion = $_POST['descripcionProducto'];
-        $precio = $_POST['precioProducto'];
-        $categoria = $_POST['categoriaProducto'];
-
-        
-        $sentencia = $pdo->prepare("INSERT INTO `producto` (`id`, `id_categoria`, `nombre`, `precio`, `descripcion`, `imagen`) 
-         VALUES (NULL, '$categoria', '$nombre', '$precio', '$descripcion', '$categoria')");
-
-        $sentencia->execute();
-    header('Location: home.php');
-    exit;
-    break;
+            case 'AgregarCarrito':
+                function generarIDProducto() {
+                    return rand(1, 9999999);
+                  }
+                  
+                if(is_numeric(openssl_decrypt($_POST['id'],COD,KEY))){
+                    $id = openssl_decrypt($_POST['id'],COD,KEY);
+                   $mensaje.= "Ok id correcto =".$id. "</br>";
+                }else{
+                    $mensaje.= "Error id correcto =".$id. "</br>"; break;  
+                }
+                if(is_string(openssl_decrypt($_POST['nombre'],COD,KEY))){
+                    $nombre = openssl_decrypt($_POST['nombre'],COD,KEY);
+                    $mensaje.= "Ok nombre  =".$nombre. "</br>";
+                }else{
+                    $mensaje.= "Error nombre =".$nombre. "</br>"; break;  
+                }
+                if(is_string(openssl_decrypt($_POST['categoria_nombre'],COD,KEY))){
+                    $categoria_nombre = openssl_decrypt($_POST['categoria_nombre'],COD,KEY);
+                    $mensaje.= "Ok categoria_nombre  =".$categoria_nombre. "</br>";
+                }else{
+                    $mensaje.= "Error categoria_nombre =".$categoria_nombre. "</br>";  
+                }
+    
+                if(is_numeric(openssl_decrypt($_POST['cantidad'],COD,KEY))){
+                    $cantidad = openssl_decrypt($_POST['cantidad'],COD,KEY);
+                    $mensaje.= "Ok cantidad =".$cantidad. "</br>";
+                }else{
+                    $mensaje.= "Error cantidad =".$cantidad. "</br>"; break;  
+                }
+                if(is_string(openssl_decrypt($_POST['descripcion'],COD,KEY))){
+                    $descripcion = openssl_decrypt($_POST['descripcion'],COD,KEY);
+                    $mensaje.= "Ok descripcion =".$descripcion. "</br>";
+                }else{
+                    $mensaje.= "Error descripcion =".$descripcion. "</br>"; break;  
+                }
+                if(is_numeric(openssl_decrypt($_POST['precio'],COD,KEY))){
+                    $precio = openssl_decrypt($_POST['precio'],COD,KEY);
+                    $mensaje.= "Ok descripcion =".$precio. "</br>";
+                }else{
+                    $mensaje.= "Error descripcion =".$precio. "</br>"; break;  
+                }
+            if(!isset($_SESSION['carrito'])){
+                $producto = array(
+                    'id' => $id,
+                    'nombre' => $nombre,
+                    'precio' => $precio,
+                    'cantidad' => $cantidad
+                );
+                $_SESSION['carrito'][0]=$producto;
+            }else{
+                
+                $numeroProductos=count($_SESSION['carrito']);
+                $producto = array(
+                    'id' => $id,
+                    'nombre' => $nombre,
+                    'precio' => $precio,
+                    'cantidad' => $cantidad
+                );
+                
+                $_SESSION['carrito'][$numeroProductos]=$producto;
+               
+            }
+            //$mensaje= print_r($_SESSION,true);
+        header('Location: listarProducto.php#carta');
+        exit;
+        break;
     case 'modificarProducto':
         $nombre= $_POST['nuevoNombreProducto'];
         $descripcion = $_POST['nuevaDescripcionProducto'];
