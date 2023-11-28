@@ -1,5 +1,6 @@
 
-from tkinter import *
+from tkinter import messagebox
+import tkinter as tk
 import os
 from openpyxl import Workbook
 from openpyxl import load_workbook
@@ -39,7 +40,7 @@ class Interfaz (object):
         archivo_xlsx = 'CONTEO.xlsx'
         self.cont =0
 
-        workbook = load_workbook('CONTEO.xlsx')
+        workbook = load_workbook('cajeronew/CONTEO.xlsx')
         sheet = workbook.active  
         self.items2 = []
         workbook.close()
@@ -54,7 +55,7 @@ class Interfaz (object):
         self.sheet = self.book.active
         #HACER COPIA PARA QUE NO SE BORRE
         self.elemntos_libro()
-        self.book.save('CONTEO.xlsx')
+        self.book.save('cajeronew/CONTEO.xlsx')
         
         self.fecha_hoy = datetime.now()
         self.product_list=[]
@@ -101,35 +102,35 @@ class Interfaz (object):
         self.img14 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\fl2.png").resize((25,25)))
 
         self.btnoper1 = CTkButton(self.ventana, text='Salida', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black"
-                              ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img3).place(x=10, y=20)
-        self.btnoper2 = CTkButton(self.ventana, text='Traslado', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black"
+                              ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img3, command=lambda:self.cerrar()).place(x=10, y=20)
+        """self.btnoper2 = CTkButton(self.ventana, text='Traslado', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black"
                               ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img4).place(x=130, y=20)
         self.btnoper3 = CTkButton(self.ventana, text='Nota Venta', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black"
                              ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img5).place(x=250, y=20)
-
+"""
         self.btnoper4 = CTkButton(self.ventana, text='Anular Pedido', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img6).place(x=10, y=78)
-        self.btnoper5 = CTkButton(self.ventana, text='Pedientes', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
-        self.btnoper6 = CTkButton(self.ventana, text='Reserva', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                                  border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img8).place(x=250, y=78)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img6,).place(x=10, y=78)
+        # self.btnoper5 = CTkButton(self.ventana, text='Pedientes', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
+        # self.btnoper6 = CTkButton(self.ventana, text='Reserva', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                           border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img8).place(x=250, y=78)
         
         self.btnoper7 = CTkButton(self.ventana, text='Lipiar Formulario', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9).place(x=10, y=136)
-        self.btnoper8 = CTkButton(self.ventana, text='Dividir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img10).place(x=130, y=136)
-        self.btnoper9 = CTkButton(self.ventana, text='Anotación', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img11).place(x=250, y=136)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9, command=lambda:self.Eliminar_todo()).place(x=10, y=136)
+        # self.btnoper8 = CTkButton(self.ventana, text='Dividir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img10).place(x=130, y=136)
+        # self.btnoper9 = CTkButton(self.ventana, text='Anotación', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img11).place(x=250, y=136)
         
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12).place(x=10, y=194)
-        self.btnoper11 = CTkButton(self.ventana, text='Bajar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=130, y=194)
-        self.btnoper12 = CTkButton(self.ventana, text='Subir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=250, y=194)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim()).place(x=10, y=194)
+        # self.btnoper11 = CTkButton(self.ventana, text='Bajar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=130, y=194)
+        # self.btnoper12 = CTkButton(self.ventana, text='Subir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=250, y=194)
         
-        self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.Eliminar_todo()).place(x=410, y=20)
+        # self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,).place(x=410, y=20)
         # self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
         #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13, command=lambda:self.Generar_boleta()).place(x=510, y=20)
         self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
@@ -152,6 +153,11 @@ class Interfaz (object):
         self.datos.eliminar_producto_por_contador(contador_a_eliminar)
         CTkMessagebox(title='MENSAJE', message=f'pedido {contador_a_eliminar} eliminado')
     #listo
+    def cerrar(self):
+        
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            self.ventana.destroy()
+        
     def mostrar_pedidos(self):
         print("hola")
         datos = self.datos.obtener_todos_los_productos()
@@ -165,7 +171,12 @@ class Interfaz (object):
         pass
 
 
-
+    def elim(self):
+        self.lista1.get()
+        print(self.lista1.get())
+        self.lista1.delete()
+        
+        pass
 
     def ingreso(self,a):
         # for product in self.product_list:
@@ -205,7 +216,7 @@ class Interfaz (object):
 
     #listo
     def elemntos_libro(self):
-        workbook = load_workbook('CONTEO.xlsx')
+        workbook = load_workbook('cajeronew/CONTEO.xlsx')
         sheet = workbook.active  
         items = []
 
@@ -224,7 +235,7 @@ class Interfaz (object):
     
     def crear_botones(self, items2):
         
-        workbook = load_workbook('PRECIO.xlsx')
+        workbook = load_workbook('cajeronew/PRECIO.xlsx')
         sheet = workbook.active  
         items2 = []
         print(items2)
@@ -288,7 +299,7 @@ class Interfaz (object):
          
 
         self.lista1.delete(0, "end")
-        self.lista1.insert(0, "")
+        # self.lista1.insert(0, "")
         
         pass
 

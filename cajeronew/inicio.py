@@ -81,7 +81,7 @@ class Inicio (object):
 
             if dato1 !=[] and dato2 !=[]:
                 self.ventana.destroy()
-                call(["python","interfaz.py"])
+                call(["python","cajeronew/interfaz.py"])
     
 Inicio()
 
