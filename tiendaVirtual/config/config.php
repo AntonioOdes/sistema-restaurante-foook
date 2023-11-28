@@ -1,7 +1,13 @@
 <?php
 
-define("KEY", "adminfoodok1");
-define("COD", "AES-128-ECB");
+
+if (!defined('KEY')) {
+    define('KEY', 'adminfoodok1');
+}
+
+if (!defined('COD')) {
+    define('COD', 'AES-128-ECB');
+}
 // Datos de conexión a la base de datos
 
 /*
@@ -20,10 +26,10 @@ define("user","root");
 define("db","foodok");
 define("password","");
 */
-$servername = "localhost";
-$username = "root";
-$dbname = "foodok";
-$password = "";
+$servername = "cs.ilab.cl";
+$username = "2_BD_69";
+$dbname = "2_BD_69";
+$password = "nicolas.matamalal23";
 
 
 

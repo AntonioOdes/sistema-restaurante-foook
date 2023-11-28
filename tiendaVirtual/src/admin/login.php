@@ -14,7 +14,7 @@ include('./../templates/cabecera.php');
 <body>
 <section class="section-menu">
         <section class="contenido">
-        <h2>Agregar producto</h2>
+        <h2>Panel admin</h2>
         <?php 
         $sentencia = $pdo->prepare("SELECT * FROM categoria");
         $sentencia->execute();
@@ -24,13 +24,13 @@ include('./../templates/cabecera.php');
         
        
     <form action="../carritoProducto.php" method="post">
-        <label for="nombreCajero">nombre</label>
+        <label for="rut">nombre</label>
         <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="nombre"  name="nombreCajero" id="nombreCajero" aria-label="nombreCajero" aria-describedby="basic-addon1">
+        <input required type="text" class="form-control" placeholder="123456789"  name="rut" id="rut" aria-label="rut" aria-describedby="basic-addon1">
         </div>
         <label for="password">contraseña</label>
         <div class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="contraseña"  name="password" id="password" aria-label="password" aria-describedby="basic-addon1">
+        <input required type="password" class="form-control" placeholder="contraseña"  name="password" id="password" aria-label="password" aria-describedby="basic-addon1">
         </div>
 
        
@@ -41,6 +41,7 @@ include('./../templates/cabecera.php');
         type="submit" >
         ingresar
         </button>
+
     </form>
     
     </section>

@@ -50,7 +50,7 @@ include('../templates/cabecera.php');
                 class="btn btn-danger"
                 type="submit"
                 name="btnAccion"
-                value="Eliminar"
+                value="EliminarProductoCarrito"
                 >Eliminar</button>  
             </form>
             </td>

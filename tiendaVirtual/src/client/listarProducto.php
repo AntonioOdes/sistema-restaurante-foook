@@ -18,6 +18,16 @@ include('../templates/cabecera.php');
       <div class="contenido">
       
         <h1 id="carta">CARTA ONLINE</h1>
+
+        <figcaption class="carritoCar">
+        <a class="nav-link, " href="listarCarrito.php" tabindex="-1" aria-disabled="true">
+                            <img id="ibolsa"  src="../images/bolsa.png"  width="40" height="40" alt=""> (
+                            <?php 
+                            echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']);
+                            ?> )
+                        </a>
+        </figcaption>
+       
         <h4>sándwiches</h4>
         <?php 
           $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id

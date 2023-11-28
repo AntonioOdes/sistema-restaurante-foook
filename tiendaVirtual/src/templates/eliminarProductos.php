@@ -15,15 +15,15 @@
                 <input  hidden type="text" name="categoria_nombre" id="categoria_nombre" value="<?php echo openssl_encrypt($producto['categoria_nombre'],COD,KEY);?>">
                 <input  hidden type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>">
                 
-
                 <button 
                   class="btn btn-primary" 
                   name="btnAccion"
-                  value="AgregarCarrito"
+                  value="EliminarProducto"
                   type="submit" >
-                  agregar al carrito
+                  eliminar
                 </button>
-                
+                <a href="../admin/modificarProducto.php">modificar</a>
+                <?php echo $sql?>
 
               </form>    
             </div>

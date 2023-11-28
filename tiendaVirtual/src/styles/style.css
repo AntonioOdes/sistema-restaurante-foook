@@ -22,6 +22,9 @@ header{
   padding-top: 20px;
 }
 
+.carritoC{
+  position:relative;
+}
 .contenido{
   background-color: #fef9ee;
   border-radius: 15px;
@@ -48,6 +51,7 @@ header{
   margin-bottom: 150px;
 
 }
+
 
 .categoria_sub{
   background-color:#382c1e;
@@ -97,18 +101,42 @@ border-radius: 5px;
   margin-right: 100px;
 }
 
-.section-menu a{
+.section-menu  a, button{
   color: #423627;
   text-decoration: none;
   font-size: 20px;
+  background: none;
+  border: none;
 }
 
-.section-menu a:hover{
+
+.section-menu a:hover, button:hover{
   color: #fffbf4;
   background-color: #463726;
   border-radius: 5px;
   
 }
+
+.section-menu .carritoCar{
+  background-color: #645749a8;
+  margin-left: 400px;
+  margin-right: 400px;
+  border-radius: 10px;
+
+}
+.section-menu .carritoCar:hover{
+  background-color: azure;
+}
+
+.carritoCar a:hover{
+  background-color: transparent;
+  color:#463726;
+}
+.carritoCar a{
+  color: #fef9ee;
+}
+
+
 
 
 
