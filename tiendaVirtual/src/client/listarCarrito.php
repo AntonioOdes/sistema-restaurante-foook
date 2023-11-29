@@ -69,6 +69,8 @@ include('../templates/cabecera.php');
             <td colspan="6">
             
                 <form  class="" action="pagar.php" method="post">
+                    <?php header("Location: siguiente_pagina.php");?>
+
                     <div class="alert alert-success">
                         <div class="form-group">
                             <label for="email">correo de contacto:</label>
