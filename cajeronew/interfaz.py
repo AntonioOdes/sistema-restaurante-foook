@@ -110,8 +110,8 @@ class Interfaz (object):
 """
         self.btnoper4 = CTkButton(self.ventana, text='Anular Pedido', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img6,).place(x=10, y=78)
-        # self.btnoper5 = CTkButton(self.ventana, text='Pedientes', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
+        self.btnoper5 = CTkButton(self.ventana, text='Pedientes', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
         # self.btnoper6 = CTkButton(self.ventana, text='Reserva', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black",
         #                           border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img8).place(x=250, y=78)
         
@@ -124,8 +124,8 @@ class Interfaz (object):
         
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim()).place(x=10, y=194)
-        # self.btnoper11 = CTkButton(self.ventana, text='Bajar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=130, y=194)
+        self.btnoper11 = CTkButton(self.ventana, text='Generar boleta', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=130, y=194)
         # self.btnoper12 = CTkButton(self.ventana, text='Subir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
         #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=250, y=194)
         
@@ -182,8 +182,6 @@ class Interfaz (object):
         for product in self.product_list:
             self.datos.ingresar_producto(*product)
             print(*product)
-
-
         pass
 
     #listo
@@ -324,7 +322,6 @@ class Interfaz (object):
         self.btnAveOK = CTkButton(self.grupo2,text='Completo Palta-Mayo',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Palta-Mayo"), self.insertar_precios(1000))).place(x=10, y=220)
         self.btnAveTRA = CTkButton(self.grupo2,text='Completo Mechada',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Mechada"), self.insertar_precios(1000))).place(x=10, y=260)
 
-
     #listo
     def mostrar_grupo1(self):
         self.crear_botones(self.items2)
@@ -335,8 +332,9 @@ class Interfaz (object):
     def mostrar_grupo2(self):
         self.grupo1.place_forget()
         self.grupo2.place(x=390,y=80)
-        
     
+
+
     
 f =Interfaz()
 
