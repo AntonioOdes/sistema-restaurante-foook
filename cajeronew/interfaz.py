@@ -104,45 +104,25 @@ class Interfaz (object):
 
         self.btnoper1 = CTkButton(self.ventana, text='Salida', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black"
                               ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img3, command=lambda:self.cerrar()).place(x=10, y=20)
-        """self.btnoper2 = CTkButton(self.ventana, text='Traslado', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black"
-                              ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img4).place(x=130, y=20)
-        self.btnoper3 = CTkButton(self.ventana, text='Nota Venta', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black"
-                             ,border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img5).place(x=250, y=20)
-"""
         self.btnoper4 = CTkButton(self.ventana, text='Anular Pedido', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img6,).place(x=10, y=78)
         self.btnoper5 = CTkButton(self.ventana, text='Pedientes', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
-        # self.btnoper6 = CTkButton(self.ventana, text='Reserva', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                           border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img8).place(x=250, y=78)
+
         
         self.btnoper7 = CTkButton(self.ventana, text='Lipiar Formulario', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9, command=lambda:self.Eliminar_todo()).place(x=10, y=136)
-        # self.btnoper8 = CTkButton(self.ventana, text='Dividir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img10).place(x=130, y=136)
-        # self.btnoper9 = CTkButton(self.ventana, text='Anotación', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img11).place(x=250, y=136)
-        
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9, command=lambda:self.Eliminar_todo()).place(x=10, y=136)   
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim(a)).place(x=10, y=194)
-        # self.btnoper11 = CTkButton(self.ventana, text='Bajar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=130, y=194)
-        # self.btnoper12 = CTkButton(self.ventana, text='Subir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=250, y=194)
-        
-        # self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,).place(x=410, y=20)
-        # self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-        #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13, command=lambda:self.Generar_boleta()).place(x=510, y=20)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim()).place(x=10, y=194)
         self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13, command=lambda:self.ingreso(a)).place(x=510, y=20)
         self.btnoper12 = CTkButton(self.ventana, text='Subir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=610, y=20)
-        self.btnoper12 = CTkButton(self.ventana, text='Subir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=710, y=20)
+        self.btnoper12 = CTkButton(self.ventana, text='Subir producto a web', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14, command=lambda:self.subir_producto_web()).place(x=710, y=20)
         self.lista1 = CTkListbox(self.ventana, height=400,width=335, fg_color="black")
         self.lista1.place(x=10,y=260)
-        self.lista1.insert(0, "")
+        # self.lista1.insert(0, "")
         
     #listo
     def eliminar_pedido(self):
@@ -166,10 +146,60 @@ class Interfaz (object):
         display_string = "\n".join([" ".join(map(str, dato)) for dato in datos])
 
         CTkMessagebox(title='base_de_datos', message=display_string)
-        #for dato in datos:
-            #CTkMessagebox(title='base_de_datos', message=f'{dato}\n')
-            
-        pass
+       
+    def subir_producto_web(self):
+        dato=self.datos.traer_ultimo_id_producto()
+        for d in dato:
+            print(d)
+
+        if d is not None:
+    # Acceder al primer elemento de la tupla y convertirlo a un entero
+            ultimaid = d[0]
+
+    # Imprimir solo el número
+            print(ultimaid)
+        else:
+            print("No hay registros en la tabla producto.")
+
+
+        id_cateogoria=CTkInputDialog(title='ingrese id_categoria', text='1=sanwiches \n 2=pichangas \n 3=papfritas \n 4=bebidas ')
+        id_cateogoria.geometry('500x400+600+400')
+        iddefault = ultimaid + 1
+        imagen=" "
+
+        id_cateogoria=(int(id_cateogoria.get_input()))
+        print(id_cateogoria)
+        if id_cateogoria >= 1:
+            nombre=CTkInputDialog(title='Nombre de producto', text='ingrese el nombre del producto')
+            nombre.geometry('500x400+600+400')
+            nombre=(nombre.get_input())
+            print(nombre)
+            if nombre != "":
+                
+                descripcion=CTkInputDialog(title='Descripcion del producto', text='ingrese la descripcion')
+                descripcion.geometry('500x400+600+400')
+                descripcion=(descripcion.get_input())
+                print(descripcion)
+                if descripcion != '':
+                  
+                        precio=CTkInputDialog(title='Precio del producto', text='ingrese precio del producto')
+                        precio.geometry('500x400+600+400')
+                        precio=(int(precio.get_input()))
+                        print(precio)
+                        if precio > 0:
+                            self.datos.ingresar_producto_a_pagina_web(iddefault,id_cateogoria,nombre,descripcion,imagen,precio)
+                            CTkMessagebox(title='Listo!', message=f'producto= {id_cateogoria}, {descripcion}, {nombre} subido.') 
+                            
+                        else:
+                            CTkMessagebox(title='Error', message=f'precio = 0, ingrese un precio mayor a 0, Operacion cancelada.')  
+                else:
+                        CTkMessagebox(title='Error', message=f'nombre = {nombre}, ingrese un nombre, Operacion cancelada.')  
+            else:
+              CTkMessagebox(title='Error', message=f'nombre = {nombre}, ingrese un nombre, Operacion cancelada.')  
+        elif id_cateogoria > 4:
+            CTkMessagebox(title='Error', message=f'id_categoria = {id_cateogoria}, Operacion cancelada.')
+        else:
+            CTkMessagebox(title='Error', message=f'id_categoria = {id_cateogoria}, Operacion cancelada.')
 
 
     def elim(self):
