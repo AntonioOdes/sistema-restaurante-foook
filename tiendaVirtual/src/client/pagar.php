@@ -1,39 +1,95 @@
+<?php
+include('../../config/config.php');
+include('../../config/connection.php');
+include('../templates/cabecera.php');
+include('../carritoProducto.php');
+
+?>
 <?php 
+$sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
+as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 1 ");
+$sentencia->execute();
+$productosComprados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+if($_POST){
+  $total=0;
+  $SID = session_id();
+  $correo = $_POST['email'];
+
+
+  foreach($_SESSION['carrito'] as $indice => $producto) {
+    $total = $total + ($producto['precio'] * $producto['cantidad']);
+}
+
+
+$sentencia = $pdo->prepare("INSERT INTO `venta` (`id`, `clavetransaccion`, `datoscuenta`, `correo`, `fecha`, `total`, `status`)
+   VALUES (NULL, :claveTransaccion, '', :correo, NOW(), :total, 'procesado')");
+
+$sentencia->bindParam(":claveTransaccion", $SID);
+$sentencia->bindParam(":total", $total);
+$sentencia->bindParam(":correo", $correo);
+
+$exitoInsercion = $sentencia->execute();
+
+if ($exitoInsercion) {
+    $idInsertado = $pdo->lastInsertId();
+
+    // Ahora puedes realizar una consulta para obtener los datos de la fila insertada
+    $consulta = $pdo->prepare("SELECT * FROM `venta` WHERE `id` = :id");
+    $consulta->bindParam(":id", $idInsertado);
+    $consulta->execute();
+
+    $filaInsertada = $consulta->fetch(PDO::FETCH_ASSOC);
+
+    // Muestra los datos de la fila insertada
+    print_r($filaInsertada);
+} else {
+    echo "Error en la inserción.";
+}
+
+ 
+}
+
 ?>
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal JS SDK Standard Integration</title>
+  </head>
+  <body>
 
-<head>
-  <title>Title</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <div class="card-columns">
+    <div class="card">
+        <img class="card-img-top" src="holder.js/100x180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Confirmar Pago</h4>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="holder.js/100x180/" alt="">
+        <div class="card-body">
+        <h3>total: $<?php echo $total?></h3>
+        <hr>
+        <p>producto:</p>
+        <?php foreach($productosComprados as $producto){ ?>
+        <p><?php echo $producto['categoria_nombre']. ": "?> <?php echo $producto['nombre']?></p>
 
-  <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <?php } ?>
+      
+        <div id="paypal-button-container"></div>
+      
+          <p id="result-message"></p>
+          <!-- Replace the "test" client-id value with your client-id -->
+          <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+          <script src="../pagar.js"></script>
+        </div>
+    </div>
+</div>
 
-</head>
-
-<body>
-  <header>
-    <!-- place navbar here -->
-  </header>
-  <main>
-    <h1>askjdlksaa</h1>
-
-  </main>
-  <footer>
-    <!-- place footer here -->
-  </footer>
-  <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-  </script>
-</body>
-
+    
+  </body>
 </html>
+<?php include('../templates/pie.php')?>

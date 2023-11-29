@@ -26,6 +26,7 @@ include('./../templates/cabecera.php');
         
        
     <form action="../carritoProducto.php" method="post">
+        
         <label for="nuevoNombreProducto">producto</label>
         <div class="input-group mb-3">
         <input type="text" class="form-control"  placeholder="nombre"  name="nuevoNombreProducto" id="nuevoNombreProducto" aria-label="nombreProducto" aria-describedby="basic-addon1">

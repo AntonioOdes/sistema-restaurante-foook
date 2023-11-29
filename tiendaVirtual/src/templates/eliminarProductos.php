@@ -23,7 +23,6 @@
                   eliminar
                 </button>
                 <a href="../admin/modificarProducto.php">modificar</a>
-                <?php echo $sql?>
 
               </form>    
             </div>

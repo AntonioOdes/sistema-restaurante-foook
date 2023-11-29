@@ -122,6 +122,7 @@ if (isset($_POST['btnAccion'])) {
         exit;
         break;
     case 'modificarProducto':
+       
         $nombre= $_POST['nuevoNombreProducto'];
         $descripcion = $_POST['nuevaDescripcionProducto'];
         $precio = $_POST['nuevoPrecioProducto'];
@@ -133,6 +134,10 @@ if (isset($_POST['btnAccion'])) {
         $sentencia->bindParam(':id', $id, PDO::PARAM_INT);
 
         $resultado = $sentencia->execute();
+    header('Location: home.php');
+    exit;
+    break;
+    
     case 'validarUsuario':
         include('../config/config.php');
         include('../config/connection.php');
