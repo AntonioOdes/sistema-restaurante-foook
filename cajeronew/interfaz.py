@@ -20,6 +20,7 @@ from datetime import datetime
 
 class Interfaz (object):
     
+
     def __init__(self) -> None:
         self.ventana=ctk.CTk()
         self.datos = conexion.Registro_de_datos()
@@ -45,7 +46,7 @@ class Interfaz (object):
         self.items2 = []
         workbook.close()
         
-        # Comprobar si el archivo existe
+        # Comprob
         if not os.path.exists(archivo_xlsx):
             # Si no existe, crear un nuevo archivo Excel
             self.book = Workbook()
