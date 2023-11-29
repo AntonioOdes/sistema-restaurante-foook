@@ -123,7 +123,7 @@ class Interfaz (object):
         #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img11).place(x=250, y=136)
         
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim()).place(x=10, y=194)
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim(a)).place(x=10, y=194)
         # self.btnoper11 = CTkButton(self.ventana, text='Bajar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
         #                       border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13).place(x=130, y=194)
         # self.btnoper12 = CTkButton(self.ventana, text='Subir', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
@@ -171,12 +171,16 @@ class Interfaz (object):
         pass
 
 
-    def elim(self):
-        self.lista1.get()
-        print(self.lista1.get())
-        self.lista1.delete()
-        
-        pass
+    def elim(self, a):
+        selected_index = self.lista1.curselection()
+        print(selected_index)# Obtiene el índice del elemento seleccionado
+        if selected_index:
+            selected_item = self.lista1.get(selected_index)  # Obtiene el elemento seleccionado
+            print(selected_item)  # Imprime el elemento seleccionado
+            self.lista1.delete(selected_index)
+        # Obtiene el índice del elemento seleccionado
+        # Elimina el elemento seleccionado de la lista
+        print("hola")
 
     def ingreso(self,a):
         # for product in self.product_list:
@@ -299,7 +303,7 @@ class Interfaz (object):
          
 
         self.lista1.delete(0, "end")
-        # self.lista1.insert(0, "")
+        self.lista1.insert(0, "")
         
         pass
 

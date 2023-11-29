@@ -1,7 +1,7 @@
 <?php foreach($listaProductos as $producto){ ?>
           <div class="col-3">
           <div class="card">
-
+        
             <div class="card-body">
               <h6 class="categoria_sub"><i><?php echo $producto['categoria_nombre']?></i></h6>
               <h5><?php echo $producto['nombre'];?></h5>
