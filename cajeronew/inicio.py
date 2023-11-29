@@ -61,11 +61,14 @@ class Inicio (object):
 
         self.fila1 = dato1
         self.fila2 = dato2
-
+        
         if self.fila1 == self.fila2:
-            
-            if dato1 == [] and dato2 == []:
-                CTkMessagebox(title='Error', message='Usuario y Contraseña incorrectos')
+            if dato1 == []:
+                CTkMessagebox(title='Error', message='ingrese contraseña')
+                if dato2 == []:
+                    CTkMessagebox(title='Error', message='ingrese rut')
+                    if dato1 == [] and dato2 == []:
+                        CTkMessagebox(title='Error', message='Usuario y Contraseña incorrectos')
                 
             # else:
 
@@ -78,7 +81,7 @@ class Inicio (object):
 
             if dato1 !=[] and dato2 !=[]:
                 self.ventana.destroy()
-                call(["python","interfaz.py"])
+                call(["python","cajeronew/interfaz.py"])
     
 Inicio()
 

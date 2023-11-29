@@ -23,24 +23,24 @@ class Registro_de_datos():
         cur.close()
         return conx
 
-    def ingresar_producto(self, contador, id_categoria, nombre, precio, descripcion, imagen):
+    def ingresar_producto(self, id, preciounitario,comentario, fecha_venta, hora_venta):
         cur = self.conexion.cursor()
-        sql = "INSERT INTO producto (id, id_categoria, nombre, precio, descripcion, imagen) VALUES (%s, %s, %s, %s, %s, %s)"
-        data = (contador, id_categoria, nombre, precio, descripcion, imagen)
+        sql = "INSERT INTO hitorial (id, preciounitario,comentario, fecha_venta, hora_venta) VALUES ( %s, %s, %s, %s, %s)"
+        data = (id, preciounitario,comentario, fecha_venta, hora_venta)
         cur.execute(sql, data)
         self.conexion.commit()
         cur.close()
     
     def obtener_todos_los_productos(self):
         cur = self.conexion.cursor()
-        cur.execute("SELECT * FROM producto")
+        cur.execute("SELECT * FROM hitorial")
         productos = cur.fetchall()  # Obtener todas las filas de la tabla
         cur.close()
         return productos
     
     def eliminar_producto_por_contador(self, contador):
         cur = self.conexion.cursor()
-        sql = "DELETE FROM producto WHERE id = %s"
+        sql = "DELETE FROM hitorial WHERE id = %s"
         data = (contador)
         cur.execute(sql, data)
         self.conexion.commit()

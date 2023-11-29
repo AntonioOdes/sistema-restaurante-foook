@@ -15,8 +15,9 @@ include('../templates/cabecera.php');
 </head>
 <body>
 <br>
-<section class="section-listarcarrito">
-<h4>Lista del carrito</h4>
+<section class="section-menu">
+    <section class="contenido">
+    <h4>Lista del carrito</h4>
 <?php if(!empty($_SESSION['carrito'])){ ?>
 <table class="table table-light">
     <tbody>
@@ -31,6 +32,7 @@ include('../templates/cabecera.php');
         <?php $total= 0?>
         <?php foreach($_SESSION['carrito'] as $indice=>$producto)  { ?>
         <tr >
+           
             <td width="15%"><?php echo $producto['nombre']?></td>
             <td width="15%"><?php echo $producto['id']?></td>
             <td width="15%"><?php echo $producto['cantidad']?></td>
@@ -49,7 +51,7 @@ include('../templates/cabecera.php');
                 class="btn btn-danger"
                 type="submit"
                 name="btnAccion"
-                value="Eliminar"
+                value="EliminarProductoCarrito"
                 >Eliminar</button>  
             </form>
             </td>
@@ -74,7 +76,7 @@ include('../templates/cabecera.php');
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Los productos de enviarán a este correo</small>
                     </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" value="prodecer" name="btnAccion">Proceder a pagar >></button>
+                    <button class="btn btn-primary btn-lg btn-block" id  type="submit" value="prodecer" name="btnAccion">Proceder a pagar >></button>
                 </form>
                
             </td>
@@ -85,8 +87,10 @@ include('../templates/cabecera.php');
 <?php }else {?>
 <div class="alert alert-success">No hay productos en el carrito.</div>
 <?php }?>
+    </section>
+
 </section>
 
 <?php
-include('./templates/pie.php');
+include('../templates/pie.php');
 ?>

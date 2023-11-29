@@ -1,63 +1,58 @@
 <?php
 include('../../config/config.php');
 include('../../config/connection.php');
-include('../carritoProducto.php');
-include('../templates/cabecera.php');
+include('./../templates/cabecera.php');
+include('../carritoProducto.php')
 ?>
-  <h1 >Restaurant Food Ok</h1>
-    <section class="section-portada">
-    <div class="contenido">
-        <div class="portada">
-            <img src="../images/scene00150.jpg" alt="">
-        </div>
-        <a href="#carta">ver carta</a>
-      </div>
-    </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
     <section class="section-menu">
-      
-      <div class="contenido">
+        <section class="contenido">
+            <h1>Panel Admin</h1>
+            <a href="agregarProducto.php">agregar producto</a>
+            <br>
+            <a href="modificarProducto.php">modificar producto</a>
+            <br>
+            <div class="contenido">
       
         <h1 id="carta">CARTA ONLINE</h1>
-
-        <figcaption class="carritoCar">
-        <a class="nav-link, " href="listarCarrito.php" tabindex="-1" aria-disabled="true">
-                            <img id="ibolsa"  src="../images/bolsa.png"  width="40" height="40" alt=""> (
-                            <?php 
-                            echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']);
-                            ?> )
-                        </a>
-        </figcaption>
-       
-        <h4>sándwiches</h4>
+        <h4  class="claseAlimento">sándwiches</h4>
         <?php 
           $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
            as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 1 ");
           $sentencia->execute();
           $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
            //print_r($listaProductos);
-           include('../templates/mostrarProductos.php')
+           
+           include('../templates/eliminarProductos.php')
            ?>
    
-        <h4>pichangas</h4>
+        <h4  class="claseAlimento">pichangas</h4>
         <?php 
           $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
            as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 2 ");
           $sentencia->execute();
           $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
            //print_r($listaProductos);
-           include('../templates/mostrarProductos.php')
+           include('../templates/eliminarProductos.php')
            ?>
         
-        <h4>papafritas</h4>
+        <h4 class="claseAlimento">papafritas</h4>
         <?php 
           $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
            as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 3 ");
           $sentencia->execute();
           $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
            //print_r($listaProductos);
-           include('../templates/mostrarProductos.php')
+           include('../templates/eliminarProductos.php')
            ?>
-        <h4>bebestibles</h4>
+        <h4  class="claseAlimento">bebestibles</h4>
         
         <div class="row">
           <?php 
@@ -66,7 +61,7 @@ include('../templates/cabecera.php');
           $sentencia->execute();
           $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
            //print_r($listaProductos);
-           include('../templates/mostrarProductos.php')
+           include('../templates/eliminarProductos.php')
            ?>
             
           
@@ -74,18 +69,10 @@ include('../templates/cabecera.php');
 
 
            
-      </div>
 
+
+        </section>
     </section>
     
-    </header>
-    <script>
-      $(function () {
-        $('[data-toggle="popover"]').popover()
-      })
-    </script>
-      </div>
-        
 </body>
 </html>
-<?php include('../templates/pie.php')?>
