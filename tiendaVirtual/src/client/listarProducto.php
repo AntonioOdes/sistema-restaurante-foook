@@ -14,7 +14,10 @@ include('../templates/cabecera.php');
       </div>
     </section>
     <section class="section-menu">
-      
+      <div class="contenido">
+      <script src="../regargapag.js"></script>
+      </div>
+      <br>
       <div class="contenido">
       
         <h1 id="carta">CARTA ONLINE</h1>
@@ -27,6 +30,16 @@ include('../templates/cabecera.php');
                             ?> )
                         </a>
         </figcaption>
+        <br>
+        <figcaption class="carritoCar">
+
+        <a class="nav-link, " href="listarProducto.php" tabindex="-1" aria-disabled="true">
+                            <img id="ibolsa"  src="../images/escoba.png"  width="40" height="40" alt=""> 
+                    
+                              <?php session_unset()?>
+                        </a>
+        </figcaption>
+       
        
         <h4>sándwiches</h4>
         <?php 

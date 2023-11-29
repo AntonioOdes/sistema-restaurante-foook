@@ -22,6 +22,6 @@
 </footer>
 
 
-
+<script src="../recargapag.js"></script>
 </body>
 </html>

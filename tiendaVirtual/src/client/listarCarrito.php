@@ -5,6 +5,7 @@ include('../carritoProducto.php');
 include('../templates/cabecera.php');
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
