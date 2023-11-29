@@ -172,16 +172,13 @@ class Interfaz (object):
 
 
     def elim(self):
-       print(self.lista1.curselection())
-       self.lista1.delete(self.lista1.curselection())
-  
+        if self.lista1.curselection() != None:
+            self.lista1.delete(self.lista1.curselection())
+        else:
+            messagebox.showwarning("Error", "No ha seleccionado un elemento.")
+
     def ingreso(self,a):
-        # for product in self.product_list:
-        #     print(self.product_list)
-
-
-
-        # pass
+ 
         for product in self.product_list:
             self.datos.ingresar_producto(*product)
             print(*product)
