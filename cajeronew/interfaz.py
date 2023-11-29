@@ -172,12 +172,9 @@ class Interfaz (object):
 
 
     def elim(self):
-        self.lista1.get()
-        print(self.lista1.get())
-        self.lista1.delete()
-        
-        pass
-
+       print(self.lista1.curselection())
+       self.lista1.delete(self.lista1.curselection())
+  
     def ingreso(self,a):
         # for product in self.product_list:
         #     print(self.product_list)
