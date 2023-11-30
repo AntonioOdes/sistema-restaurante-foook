@@ -11,6 +11,8 @@ include('../templates/cabecera.php');
             <img src="../images/scene00150.jpg" alt="">
         </div>
         <a href="#carta">ver carta</a>
+        <a href="sugerencias.php" style="margin-left: 200px;">sugerencias</a>
+
       </div>
     </section>
     <section class="section-menu">
