@@ -6,7 +6,7 @@
                 <h6 class="categoria_sub"><i><?php echo $producto['categoria_nombre'] ?></i></h6>
                 <h5><?php echo $producto['nombre']; ?></h5>
                 <h5 class="card-title">$<?php echo $producto['precio']; ?></h5>
-
+               
                 <form action="" method="post">
                 <input  hidden type="text" name="id"  value="<?php echo  openssl_encrypt($producto['id'],COD,KEY);  ?>">
                 <input  hidden type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'],COD,KEY);?>">

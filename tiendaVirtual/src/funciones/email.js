@@ -1,7 +1,7 @@
 function enviarCorreo() {
     var mensaje = $("#texto").val();
     $.ajax({type: "POST",
-    url: "http://localhost/tiendaVirtual/src/funciones/enviarCorreo.php", 
+    url: "https://jsoza.ilab.cl/DAM2023/nicolas.matamal/src/funciones/enviarCorreo.php", 
     data: {
             mensaje: mensaje
     },

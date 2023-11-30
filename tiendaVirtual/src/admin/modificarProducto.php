@@ -17,13 +17,18 @@ include('../carritoProducto.php');
 <body>
     <section class="section-menu">
         <section class="contenido">
-        <h2>Modificar Producto</h2>
+        <h2>Modificar Prodkucto</h2>
         <?php 
         $sentencia = $pdo->prepare("SELECT * FROM categoria");
         $sentencia->execute();
         $listaCategoria=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
         ?>
+         <script>
+            alert("dsdf");
+            $id = $_POST['id'];
+            alert('categoria' . $id.);
+        </script>
         
        
     <form action="../carritoProducto.php" method="post">
