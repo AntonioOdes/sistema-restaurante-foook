@@ -14,32 +14,34 @@ include('../templates/cabecera.php');
       </div>
     </section>
     <section class="section-menu">
-      <div class="contenido">
-      <script src="../regargapag.js"></script>
-      </div>
-      <br>
+      
       <div class="contenido">
       
         <h1 id="carta">CARTA ONLINE</h1>
-
+  
         <figcaption class="carritoCar">
-        <a class="nav-link, " href="listarCarrito.php" tabindex="-1" aria-disabled="true">
+        <a href="detalleCarrito.php" class="nav-link, "  tabindex="-1" aria-disabled="true">
                             <img id="ibolsa"  src="../images/bolsa.png"  width="40" height="40" alt=""> (
                             <?php 
                             echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']);
                             ?> )
-                        </a>
+          </a>
         </figcaption>
         <br>
-        <figcaption class="carritoCar">
-
-        <a class="nav-link, " href="listarProducto.php" tabindex="-1" aria-disabled="true">
-                            <img id="ibolsa"  src="../images/escoba.png"  width="40" height="40" alt=""> 
-                    
-                              <?php session_unset()?>
-                        </a>
-        </figcaption>
-       
+        <figure class="carritoCar">
+            <form method="post" action="listarProducto.php">
+                <button
+                    class="btn btn-primary" 
+                    id="btnCRUD"
+                    name="btnCRUD"
+                    value="limpiar"
+                    type="submit"
+                >Eliminar</button>  
+            </form>
+            
+        </figure>
+   
+   
        
         <h4>sándwiches</h4>
         <?php 

@@ -1,8 +1,4 @@
 
-<?php 
-
-
-?>
 
 <?php foreach($listaProductos as $producto){ ?>
           <div class="col-3">
@@ -14,7 +10,7 @@
               <h5 class="card-title">$<?php echo $producto['precio'];?></h5>
                 
               <form action="" method="post">
-                <input  hidden type="text" name="id" id="id" value="<?php echo  openssl_encrypt($producto['id'],COD,KEY);  ?>">
+                <input  hidden type="text" name="id"  value="<?php echo  openssl_encrypt($producto['id'],COD,KEY);  ?>">
                 <input  hidden type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'],COD,KEY);?>">
                 <input  hidden type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'],COD,KEY);?>">
                 <input  hidden type="text" name="descripcion" id="descripcion" value="<?php echo openssl_encrypt($producto['descripcion'],COD,KEY);?>">
@@ -29,6 +25,7 @@
                   type="submit" >
                   agregar al carrito
                 </button>
+                
       
                
                 
@@ -38,4 +35,4 @@
           </div>
         </div>
         <?php } ?>  
-        <script src="../recargapag.js"></script>
+        <script src="../recargapag.js"></script><
