@@ -37,7 +37,13 @@ class Registro_de_datos():
         cur.execute(sql, data)
         self.conexion.commit()
         cur.close()
-    
+    def ingresar_producto_a_boleta(self, id, id_producto,id_venta, fecha_venta, precio):
+        cur = self.conexion.cursor()
+        sql = "INSERT INTO boleta (id, id_producto,id_venta, fechaventa, precio) VALUES ( %s, %s, %s, %s,%s)"
+        data = (id, id_producto,id_venta, fecha_venta, precio)
+        cur.execute(sql, data)
+        self.conexion.commit()
+        cur.close()
     def obtener_todos_los_productos(self):
         cur = self.conexion.cursor()
         cur.execute("SELECT * FROM hitorial")

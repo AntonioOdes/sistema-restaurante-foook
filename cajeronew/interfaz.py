@@ -27,6 +27,14 @@ class Interfaz (object):
         self.ventana.geometry("1240x720")
         self.grupo1 = ctk.CTkFrame(self.ventana, width= 440,height=600)
         self.grupo2 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo3 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo4 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo5 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo6 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo7 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo8 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        self.grupo9 = ctk.CTkFrame(self.ventana, width= 440,height=600)
+        
         altura = self.ventana.winfo_reqheight()
         anchura = self.ventana.winfo_reqwidth()
         altura_pantalla = self.ventana.winfo_screenheight()
@@ -44,6 +52,8 @@ class Interfaz (object):
         workbook = load_workbook('cajeronew/CONTEO.xlsx')
         sheet = workbook.active  
         self.items2 = []
+        self.lista3 = []
+        
         workbook.close()
         
         # Comprob
@@ -75,16 +85,16 @@ class Interfaz (object):
         self.botSan = ctk.CTkButton(self.ventana, text="SANDWICHES",width=120,height=30,border_width=0,corner_radius=20, command=lambda:self.mostrar_grupo1()).place(x=850, y=200)
         self.btnCompletos = ctk.CTkButton(self.ventana,text='COMPLETOS',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo2()).place(x=980, y=200)
 
-        self.btnBebidas = CTkButton(self.ventana,text='OTROS',width=120,height=30,border_width=0,corner_radius=20,).place(x=1110, y=200)
+        self.btnBebidas = CTkButton(self.ventana,text='PAPASFRITAS',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo3()).place(x=1110, y=200)
 
-        self.btnPapasfritas = CTkButton(self.ventana,text='PAPASFRITAS',width=120,height=30,border_width=0,corner_radius=20).place(x=850, y=240)
-        self.btnPollo = CTkButton(self.ventana,text='POLLO',width=120,height=30,border_width=0,corner_radius=20,).place(x=980, y=240)
-        self.btnPizza = CTkButton(self.ventana,text='PIZZA',width=120,height=30,border_width=0,corner_radius=20,).place(x=1110, y=240)
-        self.btnAgregados = CTkButton(self.ventana,text='AGREGADOS',width=120,height=30,border_width=0,corner_radius=20,).place(x=850, y=280)
-        self.btnPichangas = CTkButton(self.ventana,text='PICHANGA',width=120,height=30,border_width=0,corner_radius=20,).place(x=980, y=280)
-        self.btnColaciones = CTkButton(self.ventana,text='COLACIONES',width=120,height=30,border_width=0,corner_radius=20,).place(x=1110, y=280)
-        self.btnPichangas = CTkButton(self.ventana,text='mostrar pedidos en la base de datos',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_pedidos()).place(x=980, y=500)
-        self.btnColaciones = CTkButton(self.ventana,text='eliminar pedido',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.eliminar_pedido()).place(x=1110, y=500)
+        self.btnPapasfritas = CTkButton(self.ventana,text='BEBIDAS',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo4()).place(x=850, y=240)
+        self.btnPollo = CTkButton(self.ventana,text='POLLO',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo5()).place(x=980, y=240)
+        self.btnPizza = CTkButton(self.ventana,text='PIZZA',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo6()).place(x=1110, y=240)
+        self.btnAgregados = CTkButton(self.ventana,text='AGREGADOS',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo7()).place(x=850, y=280)
+        self.btnPichangas = CTkButton(self.ventana,text='PICHANGA',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo8()).place(x=980, y=280)
+        self.btnColaciones = CTkButton(self.ventana,text='COLACIONES',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo9()).place(x=1110, y=280)
+        self.btnPichangas = CTkButton(self.ventana,text='MOSTRAR HISTORIAL',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_pedidos()).place(x=850, y=500)
+        self.btnColaciones = CTkButton(self.ventana,text='ELIMINAR PEDIDO',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.eliminar_pedido()).place(x=1100, y=500)
     #listo
     def operaciones(self):
         a=1
@@ -110,7 +120,7 @@ class Interfaz (object):
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
 
         self.btnoper7 = CTkButton(self.ventana, text='Lipiar Formulario', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
-                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9, command=lambda:self.Eliminar_todo()).place(x=10, y=136)   
+                              border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9, command=lambda:self.Eliminar_todo_de_lista()).place(x=10, y=136)   
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img12,command=lambda:self.elim()).place(x=10, y=194)
         self.btnoper11 = CTkButton(self.ventana, text='imprimir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
@@ -206,14 +216,37 @@ class Interfaz (object):
             messagebox.showwarning("Error", "No ha seleccionado un elemento.")
 
     def ingreso(self,a):
- 
-        for product in self.product_list:
-            self.datos.ingresar_producto(*product)
-            print(*product)
-        pass
+        if self.lista3 == []:
+            CTkMessagebox(title='Error', message='No hay productos en la lista, ingrese productos', icon="C:\\FO_OK\\ico.ico")
+        print(self.valor)
+        for datos in self.lista3:
+            # for d in datos:
+            #     print(d)
+            #     # print(datos)
+            #     # print (self.lista3)
+            #     self.datos.ingresar_producto(d)
+            contador_str,precio,palabra,fecha_como_cadena,hora_como_cadena = datos
+            print(datos)
+            self.datos.ingresar_producto(contador_str, precio, palabra, fecha_como_cadena, hora_como_cadena)
+            dato=self.datos.traer_ultimo_id_producto()
+            for d in dato:
+                print(d)
+
+            if d is not None:
+    # Acceder al primer elemento de la tupla y convertirlo a un entero
+                ultimaid = d[0]
+
+    # Imprimir solo el número
+            print(ultimaid)
+            
+            self.datos.ingresar_producto_a_boleta(contador_str,self.valor, ultimaid, fecha_como_cadena, precio)
+        self.lista3 = []
+        self.Eliminar_todo_de_lista()
+        CTkMessagebox(title='Operacion completada', message='todo listo', icon="C:\\FO_OK\\ico.ico")
 
     #listo
     def insertar_elemento_en_excel(self, palabra, precio):
+        
         self.lista1.insert(self.contador, palabra)
         date = self.fecha_hoy.date()
         fecha_como_cadena = self.fecha_hoy.strftime("%Y-%m-%d")
@@ -228,7 +261,9 @@ class Interfaz (object):
         contador_str = str("'" + str(self.contador) + "'")
         
         try:
-            self.datos.ingresar_producto(contador_str,precio,palabra,fecha_como_cadena,hora_como_cadena)
+            datos = (contador_str,precio,palabra,fecha_como_cadena,hora_como_cadena)
+            self.lista3.append(datos)
+            #self.datos.ingresar_producto(contador_str,precio,palabra,fecha_como_cadena,hora_como_cadena)
             print("ok")
         except ValueError:
             print("eeror en ingreso de producto a mysql")
@@ -252,8 +287,29 @@ class Interfaz (object):
         if valor == 1:
             btn = CTkButton(self.grupo1, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
             btn.place(x=x, y=y)
-        if valor == 3:
+        if valor == 2:
             btn = CTkButton(self.grupo2, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 3:
+            btn = CTkButton(self.grupo3, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 4:
+            btn = CTkButton(self.grupo4, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 5:
+            btn = CTkButton(self.grupo5, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 6:
+            btn = CTkButton(self.grupo6, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 7:
+            btn = CTkButton(self.grupo7, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 8:
+            btn = CTkButton(self.grupo8, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
+        if valor == 9:
+            btn = CTkButton(self.grupo9, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
             btn.place(x=x, y=y)
     #listo
     # def crear_boton_en_pantalla2(self, elemento, precio, x, y):
@@ -290,7 +346,7 @@ class Interfaz (object):
     # # Llama a tu función para crear botones con los datos obtenidos
     #         self.crear_boton_en_pantalla2(nombre, precio, x, y)
 
-    def Eliminar_todo(self):
+    def Eliminar_todo_de_lista(self):
 
         self.lista1.delete(0, "end")
         # self.lista1.insert(0, "")
@@ -315,22 +371,137 @@ class Interfaz (object):
     #listo
     def mostrar_grupo1(self):
         valor = 1
+        self.valor = 1
         self.crear_botones(self.items2, valor)
         self.grupo1.place(x=390,y=80)
         self.grupo2.place_forget()
         
     #listo
     def mostrar_grupo2(self):
-        valor = 3
-        
+        valor = 2
+        self.valor = 2
         self.grupo1.place_forget()
         self.grupo2.place(x=390,y=80)
+        self.grupo3.place_forget()
+        self.grupo4.place_forget()
+        self.grupo5.place_forget()
+        self.grupo6.place_forget()
+        self.grupo7.place_forget()
+        self.grupo8.place_forget()
+        self.grupo9.place_forget()
+
         self.crear_botones(self.items2, valor)
-    
+    def mostrar_grupo3(self):
+        valor = 3
+        self.valor =3
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place(x=390,y=80)
+        self.grupo4.place_forget()
+        self.grupo5.place_forget()
+        self.grupo6.place_forget()
+        self.grupo7.place_forget()
+        self.grupo8.place_forget()
+        self.grupo9.place_forget()
+        self.crear_botones(self.items2, valor)
+    def mostrar_grupo4(self):
+        valor = 4
+        self.valor =4
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place_forget()
+        self.grupo4.place(x=390,y=80)
+        self.grupo5.place_forget()
+        self.grupo6.place_forget()
+        self.grupo7.place_forget()
+        self.grupo8.place_forget()
+        self.grupo9.place_forget()
+        self.crear_botones(self.items2, valor)
+    def mostrar_grupo5(self):
+        valor = 5
+        self.valor =5
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place_forget()
+        self.grupo4.place_forget()
+        self.grupo5.place(x=390,y=80)
+        self.grupo6.place_forget()
+        self.grupo7.place_forget()
+        self.grupo8.place_forget()
+        self.grupo9.place_forget()
+        self.crear_botones(self.items2, valor)
+    def mostrar_grupo6(self):
+        valor = 6
+        self.valor =6
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place_forget()
+        self.grupo4.place_forget()
+        self.grupo5.place_forget()
+        self.grupo6.place(x=390,y=80)
+        self.grupo7.place_forget()
+        self.grupo8.place_forget()
+        self.grupo9.place_forget()
+        self.crear_botones(self.items2, valor)
+    def mostrar_grupo7(self):
+        valor = 7
+        self.valor =7
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place_forget()
+        self.grupo4.place_forget()
+        self.grupo5.place_forget()
+        self.grupo6.place_forget()
+        self.grupo7.place(x=390,y=80)
+        self.grupo8.place_forget()
+        self.grupo9.place_forget()
+        self.crear_botones(self.items2, valor)
+    def mostrar_grupo8(self):
+        valor = 8
+        self.valor =8
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place_forget()
+        self.grupo4.place_forget()
+        self.grupo5.place_forget()
+        self.grupo6.place_forget()
+        self.grupo7.place_forget()
+        self.grupo8.place(x=390,y=80)
+        self.grupo9.place_forget()
+        self.crear_botones(self.items2, valor)
+    def mostrar_grupo9(self):
+        valor = 9
+        self.valor = 9
+        self.grupo1.place_forget()
+        self.grupo2.place_forget()
+        self.grupo3.place_forget()
+        self.grupo4.place_forget()
+        self.grupo5.place_forget()
+        self.grupo6.place_forget()
+        self.grupo7.place_forget()
+        self.grupo8.place_forget()
+        self.grupo9.place(x=390,y=80)
+        self.crear_botones(self.items2, valor)
+
 
 
     
 f =Interfaz()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
