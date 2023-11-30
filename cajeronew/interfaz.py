@@ -38,7 +38,7 @@ class Interfaz (object):
         self.ventana.title("Food OK!")
         self.ventana.config(bg="orange") 
         self.ventana.iconbitmap("C:\\FO_OK\\ico.ico")
-        archivo_xlsx = 'CONTEO.xlsx'
+        archivo_xlsx = 'cajeronew/CONTEO.xlsx'
         self.cont =0
 
         workbook = load_workbook('cajeronew/CONTEO.xlsx')
@@ -62,7 +62,7 @@ class Interfaz (object):
         self.product_list=[]
         self.btns = {}
         self.datos1 = []
-        self.SeleccionCompletos()
+
         self.SeleccionSanwich()
         self.operaciones()
         self.opciones()
@@ -75,9 +75,9 @@ class Interfaz (object):
         self.botSan = ctk.CTkButton(self.ventana, text="SANDWICHES",width=120,height=30,border_width=0,corner_radius=20, command=lambda:self.mostrar_grupo1()).place(x=850, y=200)
         self.btnCompletos = ctk.CTkButton(self.ventana,text='COMPLETOS',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.mostrar_grupo2()).place(x=980, y=200)
 
-        self.btnBebidas = CTkButton(self.ventana,text='MOSTRAR PRODUCTOS BD',width=120,height=30,border_width=0,corner_radius=20,).place(x=1110, y=200)
+        self.btnBebidas = CTkButton(self.ventana,text='OTROS',width=120,height=30,border_width=0,corner_radius=20,).place(x=1110, y=200)
 
-        self.btnPapasfritas = CTkButton(self.ventana,text='PAPASFRITAS',width=120,height=30,border_width=0,corner_radius=20,command=lambda:self.eliminar_pedido()).place(x=850, y=240)
+        self.btnPapasfritas = CTkButton(self.ventana,text='PAPASFRITAS',width=120,height=30,border_width=0,corner_radius=20).place(x=850, y=240)
         self.btnPollo = CTkButton(self.ventana,text='POLLO',width=120,height=30,border_width=0,corner_radius=20,).place(x=980, y=240)
         self.btnPizza = CTkButton(self.ventana,text='PIZZA',width=120,height=30,border_width=0,corner_radius=20,).place(x=1110, y=240)
         self.btnAgregados = CTkButton(self.ventana,text='AGREGADOS',width=120,height=30,border_width=0,corner_radius=20,).place(x=850, y=280)
@@ -109,7 +109,6 @@ class Interfaz (object):
         self.btnoper5 = CTkButton(self.ventana, text='Pedientes', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img7).place(x=130, y=78)
 
-        
         self.btnoper7 = CTkButton(self.ventana, text='Lipiar Formulario', width=120, height=30,border_color="black",fg_color="white", hover_color="gray90", text_color="black", 
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img9, command=lambda:self.Eliminar_todo()).place(x=10, y=136)   
         self.btnoper10 = CTkButton(self.ventana, text='Eliminar', width=120, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
@@ -118,7 +117,7 @@ class Interfaz (object):
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img13, command=lambda:self.ingreso(a)).place(x=510, y=20)
         self.btnoper12 = CTkButton(self.ventana, text='Subir', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14).place(x=610, y=20)
-        self.btnoper12 = CTkButton(self.ventana, text='Subir producto a web', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
+        self.btnoper13 = CTkButton(self.ventana, text='Subir producto a web', width=100, height=30, border_color="black",fg_color="white", hover_color="gray90", text_color="black",
                               border_width=2, corner_radius=0, compound=ctk.TOP, image=self.img14, command=lambda:self.subir_producto_web()).place(x=710, y=20)
         self.lista1 = CTkListbox(self.ventana, height=400,width=335, fg_color="black")
         self.lista1.place(x=10,y=260)
@@ -136,7 +135,7 @@ class Interfaz (object):
     #listo
     def cerrar(self):
         
-        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        if messagebox.askokcancel("Salir", "quieres salir?"):
             self.ventana.destroy()
         
     def mostrar_pedidos(self):
@@ -158,8 +157,6 @@ class Interfaz (object):
 
     # Imprimir solo el número
             print(ultimaid)
-        else:
-            print("No hay registros en la tabla producto.")
 
 
         id_cateogoria=CTkInputDialog(title='ingrese id_categoria', text='1=sanwiches \n 2=pichangas \n 3=papfritas \n 4=bebidas ')
@@ -250,81 +247,53 @@ class Interfaz (object):
         workbook.close()
     # Llama a la función crear_boton para crear un botón para cada elemento en 'items'
     #listo
-    def crear_boton_en_pantalla(self, elemento, precio, x, y):
+    def crear_boton_en_pantalla(self, elemento, precio, x, y, valor):
     # Crear un botón con el elemento y el precio obtenidos
+        if valor == 1:
             btn = CTkButton(self.grupo1, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
             btn.place(x=x, y=y)
+        if valor == 3:
+            btn = CTkButton(self.grupo2, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+            btn.place(x=x, y=y)
     #listo
+    # def crear_boton_en_pantalla2(self, elemento, precio, x, y):
+    # # Crear un botón con el elemento y el precio obtenidos
+    #         btn = CTkButton(self.grupo2, text=elemento, width=180, height=30, border_width=0, corner_radius=20, command=lambda:self.insertar_elemento_en_excel(elemento, precio))
+    #         btn.place(x=x, y=y)
     
-    def crear_botones(self, items2):
-        
-        workbook = load_workbook('cajeronew/PRECIO.xlsx')
-        sheet = workbook.active  
+    def crear_botones(self, items2, valor):
         items2 = []
-        print(items2)
-        for row in sheet.iter_rows(min_row=2, max_col=2, values_only=True):
-            elemento, precio = row
-            items2.append((elemento, precio))
-        workbook.close()
-        
-        for i, (elemento, precio) in enumerate(items2, start=2):
-            print("boton creado")
+        resultado_sql = self.datos.busca_id_categoria(valor)
+        print(resultado_sql)
+        for i, (id_producto, id_categoria, nombre, descripcion, _, precio) in enumerate(resultado_sql, start=2):
+            print("Botón creado")
+            print((id_producto, id_categoria, nombre, descripcion, _, precio))
             x = 10  # Posición x del botón
             y = 20 + (i - 2) * 40  # Ajusta la posición y para cada botón
             print(y)
-            self.crear_boton_en_pantalla(elemento, precio, x, y) 
- # ver
-    def cargar_datos_desde_excel(self, archivo):
-        try:
-            workbook = load_workbook(archivo)
-            sheet = workbook.active
-            datos = []
-            for row in sheet.iter_rows(min_row=2, max_col=2, values_only=True):
-                elemento, precio = row
-                datos.append((elemento, precio))
-            workbook.close()
-            return datos
-        except Exception as e:
-            print(f"Error al cargar datos desde Excel: {e}")
-            return []
+            self.crear_boton_en_pantalla(nombre, precio, x, y, valor)
 
+    # def crear_botones2(self, items2, valor):
+    #     items2 = []
+    #     resultado_sql = self.datos.busca_id_categoria(valor)
+    #     print(resultado_sql)
+    #     for i, (id_producto, id_categoria, nombre, descripcion, _, precio) in enumerate(resultado_sql, start=2):
+    #         print("Botón creado")
+    
+    # # Imprimir la tupla para depurar
+    #         print((id_producto, id_categoria, nombre, descripcion, _, precio))
 
-
-    def Crear_Boleta(self, producto, precio):
-        boleta = f"Producto: {producto}\nPrecio: {precio}"
-        return boleta
-
-    def generar_boletas_desde_excel(self, archivo):
-        datos = self.cargar_datos_desde_excel(archivo)
-        for producto, precio in datos:
-            boleta = self.Crear_Boleta(producto, precio)
-            print(boleta)
-
-    def Generar_boleta(self):
-        # Supongamos que self.lista1 es un objeto CTkListbox
-        num_elementos = self.lista1.size()
-        i=-1
-        if num_elementos:
-            
-            for i in range(num_elementos):
-                print(i)
-                elemento = self.lista1.get(i)
-                print(elemento)
-
-        else:
-            print("No hay elementos seleccionados.")
-
-
+    #         x = 10  # Posición x del botón
+    #         y = 20 + (i - 2) * 40  # Ajusta la posición y para cada botón
+    #         print(y)
+    
+    # # Llama a tu función para crear botones con los datos obtenidos
+    #         self.crear_boton_en_pantalla2(nombre, precio, x, y)
 
     def Eliminar_todo(self):
-        
-        print()
-         
 
         self.lista1.delete(0, "end")
-        self.lista1.insert(0, "")
-        
-        pass
+        # self.lista1.insert(0, "")
 
     #listo 
     def SeleccionSanwich(self):
@@ -342,27 +311,21 @@ class Interfaz (object):
         self.contador2 = 0
         self.cont = 0
     #listo 
-    def SeleccionCompletos(self):
-        self.btnAve = CTkButton(self.grupo2,text='Completo Italiano',width=180,height=30,border_width=0,corner_radius=20, command=lambda:(self.insertar_elemento("Completo Italiano"), self.insertar_precios(2500))).place(x=10, y=20)
-        self.btnLomo = CTkButton(self.grupo2,text='Completo Italiano Chocrut',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Italiano Chocrut"), self.insertar_precios(1000))).place(x=10, y=60)
-        self.btnChurras = CTkButton(self.grupo2,text='Completo Chocrut',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Chocrut"), self.insertar_precios(1000))).place(x=10, y=100)
-     
-        self.btnMechOK = CTkButton(self.grupo2,text='Completo Alemán',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Alemán"), self.insertar_precios(1000))).place(x=10, y=140)
-        self.btnMechTRA = CTkButton(self.grupo2,text='Completo Tomate-Mayo',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Tomate-Mayo"), self.insertar_precios(1000))).place(x=10, y=180)
-        
-        self.btnAveOK = CTkButton(self.grupo2,text='Completo Palta-Mayo',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Palta-Mayo"), self.insertar_precios(1000))).place(x=10, y=220)
-        self.btnAveTRA = CTkButton(self.grupo2,text='Completo Mechada',width=180,height=30,border_width=0,corner_radius=20,command=lambda:(self.insertar_elemento("Completo Mechada"), self.insertar_precios(1000))).place(x=10, y=260)
 
     #listo
     def mostrar_grupo1(self):
-        self.crear_botones(self.items2)
+        valor = 1
+        self.crear_botones(self.items2, valor)
         self.grupo1.place(x=390,y=80)
         self.grupo2.place_forget()
         
     #listo
     def mostrar_grupo2(self):
+        valor = 3
+        
         self.grupo1.place_forget()
         self.grupo2.place(x=390,y=80)
+        self.crear_botones(self.items2, valor)
     
 
 

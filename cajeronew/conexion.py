@@ -61,3 +61,10 @@ class Registro_de_datos():
         cur.close()
         return traer_id
 
+    def busca_id_categoria(self, id):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM producto WHERE  id_categoria = {}".format(id)
+        cur.execute(sql)
+        i = cur.fetchall()
+        cur.close()
+        return i
