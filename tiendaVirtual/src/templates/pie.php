@@ -15,13 +15,26 @@
 <div class="col-12 text-center">local - foodok </div>
 <a href="../admin/login.php">admin</a>
 <br>
-<a href="../client/listarProducto.php">cliente</a>
+<a href="../client/listarProducto.php" id="enlaceCliente">Cliente</a>
 </section>
+<script>
+        // Espera a que el documento esté listo
+        $(document).ready(function() {
+            // Agrega un controlador de eventos al enlace
+            $("#enlaceCliente").on("click", function(e) {
+                // Previene el comportamiento predeterminado del enlace (navegación)
+                e.preventDefault();
 
+                // Realiza tu acción o condición aquí
+                if(confirm("al salir del carrito se eliminaran los productos seleccionados. ¿esta seguro?")){
+                    window.location.href = "../client/listarProducto.php";
+                }else{}
+                
 
-</footer>
-
-
-
+               
+               
+            });
+        });
+    </script>
 </body>
 </html>

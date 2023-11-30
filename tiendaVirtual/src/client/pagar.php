@@ -6,12 +6,8 @@ include('../carritoProducto.php');
 
 ?>
 <?php 
-$sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
-as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = 1 ");
-$sentencia->execute();
-$productosComprados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-if($_POST){
+/*if($_POST){
   $total=0;
   $SID = session_id();
   $correo = $_POST['email'];
@@ -49,6 +45,7 @@ if ($exitoInsercion) {
 
  
 }
+*/
 
 ?>
 <!doctype html>
@@ -71,21 +68,47 @@ if ($exitoInsercion) {
     <div class="card">
         <img class="card-img-top" src="holder.js/100x180/" alt="">
         <div class="card-body">
-        <h3>total: $<?php echo $total?></h3>
+        <!--<h3>total: <?php// echo $total?></h3>-->
         <hr>
-        <p>producto:</p>
-        <?php foreach($productosComprados as $producto){ ?>
-        <p><?php echo $producto['categoria_nombre']. ": "?> <?php echo $producto['nombre']?></p>
+        <?php
+         $sentencia = $pdo->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id
+         as categoria_id from producto  JOIN categoria ON producto.id_categoria = categoria.id where categoria.id = id_categoria ");
+        $sentencia->execute();
+        $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($listaProductos);
+        ?>
+        <table>
+          <tr>
+            <th></th>
+            <th>producto</th>
+            <th>precio</th>
+          </tr>
+          <?php foreach($_SESSION['carrito'] as $indice=>$producto)  {
+          $total = 0 ?>
+          <tr>
+            <th></th>
+            <td><?php echo $producto["nombre"]?></td>
+            <td><?php echo $producto["precio"]?></td>
+            <td><?php echo $producto["id"]?></td>
 
-        <?php } ?>
+          </tr>
+          <?php $total=$total+($producto['precio']*$producto['cantidad'])?>
+          <?php }?>
+        <tr>
+            <th>precio unitario</th>   
+          </tr>
+          <tr>
+          <th>total</th>
+          <td><?php echo $total?></td>
+         </tr>
+        </table>
+  
       
-        <div id="paypal-button-container"></div>
+       
+        
+     
+       
       
-          <p id="result-message"></p>
-          <!-- Replace the "test" client-id value with your client-id -->
-          <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-          <script src="../pagar.js"></script>
-        </div>
     </div>
 </div>
 

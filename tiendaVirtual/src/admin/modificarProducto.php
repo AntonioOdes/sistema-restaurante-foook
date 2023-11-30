@@ -2,9 +2,10 @@
 include('../../config/config.php');
 include('../../config/connection.php');
 include('./../templates/cabecera.php');
-
+include('../carritoProducto.php');
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,13 +28,14 @@ include('./../templates/cabecera.php');
        
     <form action="../carritoProducto.php" method="post">
         
-        <label for="nuevoNombreProducto">producto</label>
+   
+        <label for="modP">producto</label>
         <div class="input-group mb-3">
-        <input type="text" class="form-control"  placeholder="nombre"  name="nuevoNombreProducto" id="nuevoNombreProducto" aria-label="nombreProducto" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" value=""  placeholder="nombre"  name="modificarProducto" id="modP" aria-label="nombreProducto" aria-describedby="basic-addon1">
         </div>
 
-        <label for="nuevaCategoriaProducto">categoria</label>
-        <select class="form-select" id="nuevaCategoriaProducto" name="nuevaCategoriaProducto" aria-label="Default select example">
+        <label for="modC">categoria</label>
+        <select class="form-select" id="modC" name="modificarCategoria" aria-label="Default select example">
             <option selected>categoria</option>
             <?php
             $conta = 0; // Agregamos la inicialización de $conta
@@ -45,16 +47,16 @@ include('./../templates/cabecera.php');
         </select>
         <br>
         
-        <label for="nuevoPrecioProducto">precio (CL)</label>
+        <label for="modP">precio (CL)</label>
        
-        <input type="text"  name="nuevoPrecioProducto" id="nuevoPrecioProducto"class="form-control" aria-label="Amount (to the nearest dollar)">
+        <input type="text"  name="modificarPrecio" id="modP"class="form-control" aria-label="Amount (to the nearest dollar)">
        
         <br>
 
-        <label for="nuevaDescripcionProducto">descripción</label>
+        <label for="modD">descripción</label>
         <div class="input-group">
         <span class="input-group-text">Descripción</span>
-        <textarea class="form-control" name="nuevaDescripcionProducto" id="nuevaDescripcionProducto" aria-label="With textarea"></textarea>
+        <textarea class="form-control" name="modificarDescripcion" id="modD" aria-label="With textarea"></textarea>
         </div>
 
         <button 
