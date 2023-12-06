@@ -53,7 +53,7 @@ class Interfaz (object):
         
 
 
-        self.sheet = self.book.active
+
         #HACER COPIA PARA QUE NO SE BORRE
 
         
@@ -261,16 +261,7 @@ class Interfaz (object):
         pass
 
     #listo
-    def elemntos_libro(self):
-        workbook = load_workbook('cajeronew/CONTEO.xlsx')
-        sheet = workbook.active  
-        items = []
 
-        for i, (item, value) in enumerate(items, start=2):
-            self.sheet[f'A{i}'] = item
-            self.sheet[f'B{i}'] = value
-
-        workbook.close()
     # Llama a la función crear_boton para crear un botón para cada elemento en 'items'
     #listo
     def crear_boton_en_pantalla(self, elemento, precio, x, y, valor):

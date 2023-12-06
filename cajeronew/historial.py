@@ -37,12 +37,15 @@ class Historial (object):
         self.ventana2.config(bg="orange") 
         self.ventana2.iconbitmap("C:\\FO_OK\\ico.ico")
         # self.frame = ctk.CTkFrame(self.ventana2, width= 440,height=600, bg_color='black',fg_color='black').place(x=50,y=50)
-      
+        self.opciones()
         self.mostrar_historial()
         self.ventana2.mainloop()
         pass
-    
+        
 
+    def opciones(self):
+        self.lbl = CTkEntry(self.ventana2, width=100,height= 28)
+        self.lbl.place(x=600,y=50)
 
     def mostrar_historial(self):
         self.l = CTkListbox (self.ventana2, width= 440,height=600,fg_color='black',border_width=5, corner_radius=20, bg_color='orange')
@@ -58,6 +61,7 @@ class Historial (object):
 
 
         pass
+
 
 
 a =Historial()
