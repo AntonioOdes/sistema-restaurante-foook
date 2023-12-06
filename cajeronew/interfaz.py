@@ -45,35 +45,24 @@ class Interfaz (object):
         self.ventana.geometry(f"+{x}+{y}")
         self.ventana.title("Food OK!")
         self.ventana.config(bg="orange") 
-        self.ventana.iconbitmap("C:\\FO_OK\\ico.ico")
-        archivo_xlsx = 'cajeronew/CONTEO.xlsx'
+
         self.cont =0
 
-        workbook = load_workbook('cajeronew/CONTEO.xlsx')
-        sheet = workbook.active  
         self.items2 = []
         self.lista3 = []
         
-        workbook.close()
-        
-        # Comprob
-        if not os.path.exists(archivo_xlsx):
-            # Si no existe, crear un nuevo archivo Excel
-            self.book = Workbook()
-            self.book.save(archivo_xlsx)
-        # Cargar el archivo Excel existente
-        self.book = load_workbook(archivo_xlsx)
+
+
         self.sheet = self.book.active
         #HACER COPIA PARA QUE NO SE BORRE
-        self.elemntos_libro()
-        self.book.save('cajeronew/CONTEO.xlsx')
+
         
         self.fecha_hoy = datetime.now()
         self.product_list=[]
         self.btns = {}
         self.datos1 = []
 
-        self.SeleccionSanwich()
+        self.contadores()
         self.operaciones()
         self.opciones()
         self.ventana.mainloop()
@@ -98,7 +87,6 @@ class Interfaz (object):
     #listo
     def operaciones(self):
         a=1
-        w=1
         self.img3 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\fi3.png").resize((25,25)))
         self.img4 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\faa.png").resize((25,25)))
         self.img5 = ImageTk.PhotoImage(Image.open("C:\\FO_OK\\nota.png").resize((25,25)))
@@ -134,6 +122,9 @@ class Interfaz (object):
         # self.lista1.insert(0, "")
         
     #listo
+    def abrir_historial(self):
+
+        pass
     def eliminar_pedido(self):
         id=CTkInputDialog(title='Eliminar producto', text='eliminar')
         id.geometry('300x200+800+400')
@@ -349,10 +340,9 @@ class Interfaz (object):
     def Eliminar_todo_de_lista(self):
 
         self.lista1.delete(0, "end")
-        # self.lista1.insert(0, "")
-
+        
     #listo 
-    def SeleccionSanwich(self):
+    def contadores(self):
         self.cont1 = 0
         self.cont2 = 0
         self.cont3 = 0

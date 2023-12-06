@@ -74,3 +74,11 @@ class Registro_de_datos():
         i = cur.fetchall()
         cur.close()
         return i
+    def obtener_todos_los_productos_de_historial_por_id(self, id):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM hitorial WHERE id = %s"
+        data = (id)
+        cur.execute(sql, data)
+        id = cur.fetchall()  
+        cur.close()
+        return id
