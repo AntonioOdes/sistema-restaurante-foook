@@ -160,14 +160,16 @@ class Interfaz (object):
             print(ultimaid)
 
 
-        id_cateogoria=CTkInputDialog(title='ingrese id_categoria', text='1=sanwiches \n 2=pichangas \n 3=papfritas \n 4=bebidas ')
+        id_cateogoria=CTkInputDialog(title='ingrese id_categoria', text='1=Sandwiches \n 2=Pichangas \n 3=Papasfritas \n 4=Bebestibles \n 5=Colaciones \n 6=postres \n 7=Otros')
         id_cateogoria.geometry('500x400+600+400')
+        if ultimaid ==0 or ultimaid ==None:
+            ultimaid = 1
         iddefault = ultimaid + 1
         imagen=" "
-
+# CAMBIAR ESTOOOOOOOOOOOOOOOOOOOOOOO
         id_cateogoria=(int(id_cateogoria.get_input()))
         print(id_cateogoria)
-        if id_cateogoria >= 1:
+        if id_cateogoria >= 1 and id_cateogoria <=7:
             nombre=CTkInputDialog(title='Nombre de producto', text='ingrese el nombre del producto')
             nombre.geometry('500x400+600+400')
             nombre=(nombre.get_input())
@@ -194,7 +196,7 @@ class Interfaz (object):
                         CTkMessagebox(title='Error', message=f'nombre = {nombre}, ingrese un nombre, Operacion cancelada.')  
             else:
               CTkMessagebox(title='Error', message=f'nombre = {nombre}, ingrese un nombre, Operacion cancelada.')  
-        elif id_cateogoria > 4:
+        elif id_cateogoria >= 8:
             CTkMessagebox(title='Error', message=f'id_categoria = {id_cateogoria}, Operacion cancelada.')
         else:
             CTkMessagebox(title='Error', message=f'id_categoria = {id_cateogoria}, Operacion cancelada.')

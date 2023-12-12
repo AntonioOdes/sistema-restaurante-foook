@@ -44,8 +44,11 @@ class Historial (object):
         
 
     def opciones(self):
-        self.lbl = CTkEntry(self.ventana2, width=100,height= 28)
-        self.lbl.place(x=600,y=50)
+        self.Entr = CTkEntry(self.ventana2, width=100,height= 28)
+        self.Entr.place(x=600,y=50)
+
+        self.Entr = CTkEntry(self.ventana2, width=100,height= 28)
+
 
     def mostrar_historial(self):
         self.l = CTkListbox (self.ventana2, width= 440,height=600,fg_color='black',border_width=5, corner_radius=20, bg_color='orange')
