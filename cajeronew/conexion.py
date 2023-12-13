@@ -34,6 +34,7 @@ class Registro_de_datos():
         cur.execute(sql, data)
         self.conexion.commit()
         cur.close()
+
     def ingresar_producto_a_pagina_web(self, id, id_categoria, nombre, descripcion, imagen, precio):
         cur = self.conexion.cursor()
         sql = "INSERT INTO producto (id, id_categoria, nombre, descripcion, imagen, precio) VALUES ( %s, %s, %s, %s, %s,%s)"
@@ -41,6 +42,7 @@ class Registro_de_datos():
         cur.execute(sql, data)
         self.conexion.commit()
         cur.close()
+
     def ingresar_producto_a_boleta(self, id, id_producto,id_venta, fecha_venta, precio):
         cur = self.conexion.cursor()
         sql = "INSERT INTO boleta (id, id_producto,id_venta, fechaventa, precio) VALUES ( %s, %s, %s, %s,%s)"
@@ -48,6 +50,7 @@ class Registro_de_datos():
         cur.execute(sql, data)
         self.conexion.commit()
         cur.close()
+
     def obtener_todos_los_productos(self):
         cur = self.conexion.cursor()
         cur.execute("SELECT * FROM hitorial")
@@ -78,6 +81,7 @@ class Registro_de_datos():
         i = cur.fetchall()
         cur.close()
         return i
+    
     def obtener_todos_los_productos_de_historial_por_id(self, id):
         cur = self.conexion.cursor()
         sql = "SELECT * FROM hitorial WHERE id = %s"
@@ -86,3 +90,27 @@ class Registro_de_datos():
         id = cur.fetchall()  
         cur.close()
         return id
+    def HISTORIAL_flitrar_por_fecha_completa(self,f):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM hitorial WHERE fecha_venta = %s"
+        data = (f)
+        cur.execute(sql,data)
+        f = cur.fetchall()
+        cur.close()
+        return f
+    def HISTORIAL_flitrar_por_dia(self,f):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM hitorial WHERE DAY(fecha_venta) = %s"
+        data = (f)
+        cur.execute(sql,data)
+        f = cur.fetchall()
+        cur.close()
+        return f
+    def HISTORIAL_flitrar_por_mes(self,f):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM hitorial WHERE MONTH(fecha_venta) = %s"
+        data = (f)
+        cur.execute(sql,data)
+        f = cur.fetchall()
+        cur.close()
+        return f

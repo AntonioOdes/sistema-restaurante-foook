@@ -79,7 +79,7 @@ class Inicio (object):
             #     if dato1 !=[] and dato2==[]:
             #         CTkMessagebox(title='Error', message='Contraseña incorrecta')
 
-            if dato1 !=[] and dato2 !=[]:
+            elif dato1 !=[] and dato2 !=[]:
                 self.ventana.destroy()
                 call(["python","cajeronew/interfaz.py"])
     
