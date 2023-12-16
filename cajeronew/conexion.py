@@ -10,7 +10,7 @@ class Registro_de_datos():
                                                 database='foodok2',
                                                 user='root',
                                                 password='1234')
-        
+    #login
     def buscar_user(self, nombres):
         cur = self.conexion.cursor()
         sql = "SELECT * FROM cajero WHERE rut = {}".format(nombres)
@@ -27,6 +27,7 @@ class Registro_de_datos():
         cur.close()
         return conx
 
+    #productos
     def ingresar_producto(self, id, preciounitario,comentario, fecha_venta, hora_venta):
         cur = self.conexion.cursor()
         sql = "INSERT INTO hitorial (id, preciounitario,comentario, fecha_venta, hora_venta) VALUES ( %s, %s, %s, %s, %s)"
@@ -90,6 +91,8 @@ class Registro_de_datos():
         id = cur.fetchall()  
         cur.close()
         return id
+    
+    #filtros
     def HISTORIAL_flitrar_por_fecha_completa(self,f):
         cur = self.conexion.cursor()
         sql = "SELECT * FROM hitorial WHERE fecha_venta = %s"
@@ -114,3 +117,19 @@ class Registro_de_datos():
         f = cur.fetchall()
         cur.close()
         return f
+    def HISTORIAL_flitrar_por_año(self,f):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM hitorial WHERE YEAR(fecha_venta) = %s"
+        data = (f)
+        cur.execute(sql,data)
+        f = cur.fetchall()
+        cur.close()
+        return f
+    
+    def HISTORIAL_flitrar_orden_de_fecha(self):
+        cur = self.conexion.cursor()
+        sql = "SELECT * FROM hitorial ORDER BY fecha_venta DESC"
+        cur.execute(sql)
+        result = cur.fetchall()
+        cur.close()
+        return result

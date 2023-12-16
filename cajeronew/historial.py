@@ -38,7 +38,7 @@ class Historial (object):
         self.ventana2.iconbitmap("C:\\FO_OK\\ico.ico")
         # self.frame = ctk.CTkFrame(self.ventana2, width= 440,height=600, bg_color='black',fg_color='black').place(x=50,y=50)
         self.opciones()
-        self.mostrar_historial()
+        self.mostrar_historial_orden_fecha()
         self.ventana2.mainloop()
         pass
     # def Filtro(self, a):
@@ -54,7 +54,8 @@ class Historial (object):
 
         if datosfiltro==0 or datosfiltro==None or datosfiltro=="":
             CTkMessagebox(title='Error', message=f' {datosfiltro} ')
-        else:
+        else:    
+            self.borrarfiltro()
             if datosfiltro =='Dia, Mes y Agno':
 
                 self.entry1 = CTkEntry(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', placeholder_text='Dia')
@@ -64,62 +65,60 @@ class Historial (object):
                 self.entry3 = CTkEntry(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', placeholder_text='Agno')
                 self.entry3.place(x=750,y=150)
                 
-                self.btnBuscar = CTkButton(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', text='Buscar', command=lambda:self.Buscar())
-                self.btnBuscar.place(x=600,y=50)
+                
             if datosfiltro =='Dia':
                 
                 self.entry1 = CTkEntry(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', placeholder_text='Dia')
                 self.entry1.place(x=750,y=50)
-                self.btnBuscar = CTkButton(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', text='Buscar', command=lambda:self.Buscar())
-                self.btnBuscar.place(x=600,y=50)
-                self.entry2.place_forget()
-                self.entry3.place_forget()
-            if datosfiltro =='Mes':
+
                 
+            if datosfiltro =='Mes':
                 self.entry1 = CTkEntry(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', placeholder_text='Mes')
                 self.entry1.place(x=750,y=50)
-                self.btnBuscar = CTkButton(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', text='Buscar', command=lambda:self.Buscar())
-                self.btnBuscar.place(x=600,y=50)
-                self.entry2.place_forget()
-                self.entry3.place_forget()
-            if datosfiltro =='Mes':
+                
+            if datosfiltro =='Agno':
                 
                 self.entry1 = CTkEntry(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', placeholder_text='Agno')
                 self.entry1.place(x=750,y=50)
-                self.btnBuscar = CTkButton(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', text='Buscar', command=lambda:self.Buscar())
-                self.btnBuscar.place(x=600,y=50)
-                self.entry2.place_forget()
-                self.entry3.place_forget()
-        pass
+
+            self.btnBuscar = CTkButton(self.ventana2, width=120,height=30,border_width=0,corner_radius=20,bg_color='orange', text='Buscar', command=lambda:self.Buscar())
+            self.btnBuscar.place(x=600,y=50)
+    def borrarfiltro(self):
+        if hasattr(self, 'entry1'):
+            self.entry1.place_forget()
+        if hasattr(self, 'entry2'):
+            self.entry2.place_forget()
+        if hasattr(self, 'entry3'):
+            self.entry3.place_forget()
+
+
     def Buscar(self):
         datosfiltro = self.x.get()
         print(datosfiltro)
         if datosfiltro =='Dia, Mes, Agno':
             dato= [self.entry3.get() + '-' + self.entry2.get() + '-' + self.entry1.get()]
             fecha = self.datos.HISTORIAL_flitrar_por_fecha_completa(dato)
-            self.mostrar_historial2(fecha)
+            self.mostrar_historial_por_filtro(fecha)
         if datosfiltro =='Dia':
             dato= [self.entry1.get()]
             fecha = self.datos.HISTORIAL_flitrar_por_dia(dato)
-            self.mostrar_historial2(fecha)
+            self.mostrar_historial_por_filtro(fecha)
         if datosfiltro =='Mes':
             dato= [self.entry1.get()]
             fecha = self.datos.HISTORIAL_flitrar_por_mes(dato)
-            self.mostrar_historial2(fecha)
+            self.mostrar_historial_por_filtro(fecha)
         if datosfiltro =='Agno':
             dato= [self.entry1.get()]
-            fecha = self.datos.HISTORIAL_flitrar_por_mes(dato)
-            self.mostrar_historial2(fecha)
-        print(dato)
-        
+            fecha = self.datos.HISTORIAL_flitrar_por_año(dato)
+            self.mostrar_historial_por_filtro(fecha)
+        print(dato)   
         print(fecha)
 
-        pass
 
-    def mostrar_historial2(self,fecha):
+    def mostrar_historial_por_filtro(self,fecha):
         self.list = CTkListbox (self.ventana2, width=440,height=600,fg_color='black',border_width=5, corner_radius=20, bg_color='orange')
         self.list.place(x=50,y=50)
-        id= 1
+
         
         datos = fecha
         etiquetas = []
@@ -141,12 +140,10 @@ class Historial (object):
         self.filtrar.place(x=1100,y=50)
     
 
-    def mostrar_historial(self):
+    def mostrar_historial_orden_fecha(self):
         self.list = CTkListbox (self.ventana2, width= 440,height=600,fg_color='black',border_width=5, corner_radius=20, bg_color='orange')
         self.list.place(x=50,y=50)
-        id= 1
-        # datos = self.datos.obtener_todos_los_productos_de_historial_por_id([id])
-        datos = self.datos.obtener_todos_los_productos()
+        datos = self.datos.HISTORIAL_flitrar_orden_de_fecha()
         etiquetas = []
         for i, dato in enumerate(datos):
             etiqueta = ctk.CTkButton(self.list, text=" ".join(map(str, dato)), fg_color="black", bg_color="black",hover_color="orange")
